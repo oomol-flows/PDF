@@ -1,0 +1,31 @@
+nodes:
+  - task: file::dir_reader
+    title: "Read Dir #2"
+    node_id: dir_reader#2
+    inputs_from:
+      - handle: dir
+        value: /oomol-storage/manga
+  - task: self::image2pdf
+    node_id: image2pdf#1
+    inputs_from:
+      - handle: in
+        value: /oomol-storage/manga
+      - handle: file_folder
+        value: /oomol-storage/manga
+        from_node:
+          - node_id: dir_reader#2
+            output_handle: paths
+      - handle: handle0
+        value: input value
+      - handle: name
+        value: output
+      - handle: handle1
+        value: input value
+      - handle: out_folder
+        value: /oomol-storage/
+      - handle: paths
+        value:
+          []
+        from_node:
+          - node_id: dir_reader#2
+            output_handle: paths
