@@ -8,19 +8,8 @@ nodes:
   - task: self::image2pdf
     node_id: image2pdf#1
     inputs_from:
-      - handle: in
-        value: /oomol-storage/manga
-      - handle: file_folder
-        value: /oomol-storage/manga
-        from_node:
-          - node_id: dir_reader#2
-            output_handle: paths
-      - handle: handle0
-        value: input value
       - handle: name
-        value: output
-      - handle: handle1
-        value: input value
+        value: output99
       - handle: out_folder
         value: /oomol-storage/
       - handle: paths

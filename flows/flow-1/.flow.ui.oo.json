@@ -35,7 +35,7 @@
   ],
   "edges": [
     {
-      "id": "17de6335-c99d-405b-8a16-b5c9e6dccb15",
+      "id": "2d6e9d75-f655-40d2-9c4e-9ba975208687",
       "connection": {
         "from": {
           "type": "from_node",
@@ -47,7 +47,7 @@
         "to": {
           "type": "to_node",
           "target": {
-            "node_id": "+python#1",
+            "node_id": "image2pdf#1",
             "input_handle": "paths"
           }
         }
