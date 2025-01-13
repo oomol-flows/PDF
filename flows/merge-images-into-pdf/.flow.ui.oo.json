@@ -1,0 +1,48 @@
+{
+  "nodes": {
+    "image2pdf#1": {
+      "rfNode": {
+        "position": {
+          "x": 1091.0167197227588,
+          "y": 66.6640647180767
+        }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "image_paths": {
+              "[]": true
+            }
+          }
+        }
+      }
+    },
+    "read-folder#1": {
+      "contentWidth": 350,
+      "rfNode": {
+        "position": {
+          "x": 99.2361044381347,
+          "y": 66.6640647180767
+        }
+      }
+    },
+    "+python#1": {
+      "contentWidth": 484.8262940243682,
+      "rfNode": {
+        "position": {
+          "x": 525.6434654165557,
+          "y": 18.025600559430018
+        }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "files": {
+              "[]": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

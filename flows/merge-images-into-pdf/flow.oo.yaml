@@ -1,0 +1,51 @@
+nodes:
+  - task: self::images2pdf
+    node_id: image2pdf#1
+    inputs_from:
+      - handle: pdf_file_path
+        value:
+      - handle: image_paths
+        from_node:
+          - node_id: +python#1
+            output_handle: image_paths
+      - handle: title
+        value:
+      - handle: author
+        value:
+    title: Merge into PDF file
+  - task: oomol-file::read-folder
+    title: "Read Images in folder"
+    node_id: read-folder#1
+    inputs_from:
+      - handle: folder
+      - handle: only_file_name
+        value: false
+  - task:
+      ui:
+        default_width: 450
+      inputs_def:
+        - handle: image_paths
+          description: Input
+          json_schema:
+            type: array
+            items:
+              type: string
+      outputs_def:
+        - handle: image_paths
+          description: Output
+          json_schema:
+            type: array
+            items:
+              type: string
+      executor:
+        name: python
+        options:
+          entry: scriptlets/+python#1.py
+    title: "Sort files"
+    icon: ":logos:python:"
+    node_id: +python#1
+    inputs_from:
+      - handle: image_paths
+        from_node:
+          - node_id: read-folder#1
+            output_handle: files

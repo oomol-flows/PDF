@@ -1,0 +1,40 @@
+inputs_def:
+  - handle: image_paths
+    description: Input
+    json_schema:
+      type: array
+      items:
+        type: string
+    value:
+      []
+  - handle: pdf_file_path
+    json_schema:
+      type: string
+      ui:widget: file
+    value:
+    nullable: true
+  - handle: title
+    json_schema:
+      type: string
+    nullable: true
+    value:
+  - handle: author
+    json_schema:
+      type: string
+    nullable: true
+    value:
+outputs_def:
+  - handle: pdf_file_path
+    description: Output
+    json_schema:
+      type: string
+      ui:widget: file
+icon: ":fa6-solid:file-pdf:"
+ui:
+  default_width: 419.64686341410464
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: main.py
+title: Merge into PDF file

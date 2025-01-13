@@ -3,4 +3,12 @@ scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
   bootstrap: |
-    pnpm install && pip install --user -r requirements.txt
+    set -e
+    pip install --upgrade pip
+    pip install -r requirements.txt
+dependencies:
+  oomol-file: 0.0.1
+name: pdf
+version: 0.0.2
+displayName: PDF
+description: Image synthesis to PDF, PDF to image conversion.
