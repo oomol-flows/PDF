@@ -8,6 +8,10 @@ nodes:
         from_node:
           - node_id: +python#1
             output_handle: image_paths
+      - handle: title
+        value:
+      - handle: author
+        value:
     title: Merge into PDF file
   - task: oomol-file::read-folder
     title: "Read Images in folder"
