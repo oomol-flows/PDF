@@ -3,8 +3,17 @@
     "image2pdf#1": {
       "rfNode": {
         "position": {
-          "x": 435.00000000000006,
-          "y": 0
+          "x": 1002.125733501784,
+          "y": -2.1006604717341126
+        }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "image_paths": {
+              "[]": true
+            }
+          }
         }
       }
     },
@@ -12,8 +21,26 @@
       "contentWidth": 350,
       "rfNode": {
         "position": {
-          "x": 13,
-          "y": 0
+          "x": 10.34511821715978,
+          "y": -2.1006604717341126
+        }
+      }
+    },
+    "+python#1": {
+      "contentWidth": 484.8262940243682,
+      "rfNode": {
+        "position": {
+          "x": 430.0437255185261,
+          "y": -2.1006604717341126
+        }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "files": {
+              "[]": true
+            }
+          }
         }
       }
     }

@@ -1,5 +1,5 @@
 inputs_def:
-  - handle: paths
+  - handle: image_paths
     description: Input
     json_schema:
       type: array
@@ -7,23 +7,21 @@ inputs_def:
         type: string
     value:
       []
-  - handle: name
+  - handle: pdf_file_path
     json_schema:
       type: string
-    value: output
-  - handle: out_folder
-    json_schema:
-      type: string
-      ui:widget: dir
-    value: /oomol-storage/
+      ui:widget: file
+    value:
+    nullable: true
 outputs_def:
-  - handle: file_address
+  - handle: pdf_file_path
     description: Output
     json_schema:
       type: string
+      ui:widget: file
 icon: ":fa6-solid:file-pdf:currentColor:"
 ui:
-  default_width: 530
+  default_width: 419.64686341410464
 executor:
   name: python
   options:
