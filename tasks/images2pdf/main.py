@@ -25,6 +25,7 @@ def main(params: dict, context: Context):
           save_all=True,
         )
         merger.append(page_path)
+        context.report_progress(i/len(image_paths) * 90.0)
       merger.write(pdf_file_path)
     
   return { "pdf_file_path": pdf_file_path }
