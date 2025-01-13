@@ -8,6 +8,7 @@ scripts:
     pip install -r requirements.txt
 dependencies:
   oomol-file: 0.0.1
-name: PDF-process
-version: 0.0.1
+name: pdf
+version: 0.0.2
 displayName: PDF
+description: Image synthesis to PDF, PDF to image conversion.
