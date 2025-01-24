@@ -1,4 +1,4 @@
-icon: "./icon.png"
+icon: "https://package-assets.oomol.com/packages/pdf/0.0.3/files/package/icon.png"
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
@@ -6,9 +6,13 @@ scripts:
     set -e
     pip install --upgrade pip
     pip install -r requirements.txt
+    sudo apt-get update
+    sudo apt-get install poppler-utils -y
 dependencies:
   oomol-file: 0.0.1
 name: pdf
-version: 0.0.2
+version: 0.0.4
 displayName: PDF
 description: Image synthesis to PDF, PDF to image conversion.
+repository: https://github.com/oomol-flows/PDF
+releaseNotes: add code repo
