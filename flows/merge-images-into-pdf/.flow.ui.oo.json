@@ -1,54 +1,20 @@
 {
   "nodes": {
-    "image2pdf#1": {
+    "images2pdf#1": {
+      "contentWidth": 419.64686341410464,
       "rfNode": {
         "position": {
-          "x": 1091.0167197227588,
-          "y": 66.6640647180767
-        }
-      },
-      "sections": {
-        "inputs": {
-          "collapsed": {
-            "image_paths": {
-              "[]": true
-            }
-          }
+          "x": 967.681820552802,
+          "y": 108.29496817166648
         }
       }
     },
-    "read-folder#1": {
-      "contentWidth": 350,
+    "dir_to_path_list#1": {
+      "contentWidth": 450,
       "rfNode": {
         "position": {
-          "x": 99.2361044381347,
-          "y": 66.6640647180767
-        }
-      }
-    },
-    "+python#1": {
-      "contentWidth": 484.8262940243682,
-      "rfNode": {
-        "position": {
-          "x": 525.6434654165557,
-          "y": 18.025600559430018
-        }
-      },
-      "sections": {
-        "inputs": {
-          "collapsed": {
-            "files": {
-              "[]": true
-            }
-          }
-        }
-      }
-    },
-    "images2pdf#2": {
-      "rfNode": {
-        "position": {
-          "x": 0,
-          "y": 494.5197660529845
+          "x": 457.92775477609825,
+          "y": 239.88412856085824
         }
       }
     }
