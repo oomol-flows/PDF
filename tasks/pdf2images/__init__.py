@@ -17,16 +17,17 @@ def main(params: dict, context: Context):
 
   return { "image_dir": image_dir }
 
+
 def pdf_to_images(pdf_path, output_folder, context):
-    # 将 PDF 转换为图片
+    # Convert PDF to images
     images = convert_from_path(pdf_path)
     total_pages = len(images)
     percentage = 0
-    # 保存每张图片
+    # Save each image
     for i, image in enumerate(images):
-      # 计算当前页码的百分比
+      # Calculate the percentage of the current page
         percentage = (i + 1) / total_pages * 100
-        # 打印或记录百分比
+        # Print or record percentage
         context.report_progress(percentage)
         image_path = f"{output_folder}/page_{i + 1}.png"
         image.save(image_path, "PNG")
