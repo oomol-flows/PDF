@@ -11,8 +11,8 @@ scripts:
 dependencies:
   oomol-file: 0.0.7
 name: pdf
-version: 0.0.6
+version: 0.0.7
 displayName: PDF
 description: Image synthesis to PDF, PDF to image conversion.
 repository: https://github.com/oomol-flows/PDF
-releaseNotes: add chinese readme
+releaseNotes: fix readme bug
