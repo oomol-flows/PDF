@@ -10,7 +10,6 @@ nodes:
           - node_id: dir_to_path_list#1
             output_handle: files
       - handle: pdf_file_path
-        value:
       - handle: title
         value:
       - handle: author
@@ -35,4 +34,4 @@ nodes:
           - node_id: images2pdf#1
             output_handle: pdf_file_path
       - handle: destination_dir
-        value: /oomol-driver/oomol-storage/book
+        value:
