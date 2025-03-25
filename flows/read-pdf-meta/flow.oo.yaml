@@ -1,0 +1,6 @@
+nodes:
+  - task: self::pdf2meta
+    title: "PDF to meta #1"
+    node_id: pdf2meta#1
+    inputs_from:
+      - handle: pdf
