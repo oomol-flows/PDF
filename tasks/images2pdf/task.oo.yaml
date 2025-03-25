@@ -5,24 +5,25 @@ inputs_def:
       type: array
       items:
         type: string
+        ui:widget: file
     value:
       []
   - handle: pdf_file_path
     json_schema:
       type: string
-      ui:widget: file
+      ui:widget: save
     value:
     nullable: true
   - handle: title
     json_schema:
       type: string
-    nullable: true
     value:
+    nullable: true
   - handle: author
     json_schema:
       type: string
-    nullable: true
     value:
+    nullable: true
 outputs_def:
   - handle: pdf_file_path
     description: Output
