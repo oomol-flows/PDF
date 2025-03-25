@@ -8,6 +8,9 @@ inputs_def:
       type: string
       ui:widget: file
 outputs_def:
+  - handle: name
+    json_schema:
+      type: string
   - handle: meta
     json_schema:
       type: object
