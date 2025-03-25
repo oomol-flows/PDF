@@ -1,0 +1,21 @@
+{
+  "nodes": {
+    "pdf2meta#1": {
+      "rfNode": {
+        "position": {
+          "x": 225,
+          "y": 60
+        }
+      },
+      "sections": {
+        "outputs": {
+          "collapsed": {
+            "meta": {
+              "[]": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

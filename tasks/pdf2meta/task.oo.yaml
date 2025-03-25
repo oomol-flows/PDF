@@ -1,0 +1,16 @@
+executor:
+  name: python
+  options:
+    entry: __init__.py
+inputs_def:
+  - handle: pdf
+    json_schema:
+      type: string
+      ui:widget: file
+outputs_def:
+  - handle: meta
+    json_schema:
+      type: object
+      additionalProperties:
+        type: string
+title: PDF to meta

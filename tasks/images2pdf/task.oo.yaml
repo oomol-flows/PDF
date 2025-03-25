@@ -38,4 +38,4 @@ executor:
   options:
     spawn: false
     entry: main.py
-title: Merge into PDF file
+title: Images to PDF
