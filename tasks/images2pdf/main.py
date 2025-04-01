@@ -5,6 +5,7 @@ from tempfile import TemporaryDirectory
 from PyPDF2 import PdfMerger
 from PIL import Image, UnidentifiedImageError
 
+
 def main(params: dict, context: Context):
   title: str | None = params.get("title")
   author: str | None = params.get("author")
