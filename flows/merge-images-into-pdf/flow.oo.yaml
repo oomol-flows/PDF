@@ -7,24 +7,14 @@ nodes:
         value:
           []
         from_node:
-          - node_id: dir_to_path_list#1
-            output_handle: files
+          - node_id: list_files_from_folder#1
+            output_handle: file_paths
       - handle: pdf_file_path
+        value:
       - handle: title
         value:
       - handle: author
         value:
-  - task: oomol-file::dir_to_path_list
-    title: "Read folder #1"
-    node_id: dir_to_path_list#1
-    inputs_from:
-      - handle: folder
-      - handle: sort
-        value: false
-      - handle: traverse
-        value: false
-      - handle: absolute_path
-        value: true
   - task: oomol-file::copy_file
     title: "Copy file #1"
     node_id: copy_file#1
@@ -35,3 +25,14 @@ nodes:
             output_handle: pdf_file_path
       - handle: destination_dir
         value:
+  - task: oomol-file::list_files_from_folder
+    title: "List files from folder #1"
+    node_id: list_files_from_folder#1
+    inputs_from:
+      - handle: folder
+      - handle: sort
+        value: false
+      - handle: traverse
+        value: false
+      - handle: absolute_path
+        value: true
