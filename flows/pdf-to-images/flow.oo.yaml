@@ -1,0 +1,8 @@
+nodes:
+  - node_id: pdf2images#1
+    title: "PDF to images #1"
+    inputs_from:
+      - handle: pdf_path
+      - handle: image_dir
+        value: null
+    task: self::pdf2images

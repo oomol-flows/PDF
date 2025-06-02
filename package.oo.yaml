@@ -11,8 +11,8 @@ scripts:
 dependencies:
   oomol-file: 0.0.10
 name: pdf
-version: 0.0.9
+version: 0.0.10
 displayName: PDF
 description: Image synthesis to PDF, PDF to image conversion.
 repository: https://github.com/oomol-flows/PDF
-releaseNotes: upgrade icon
+releaseNotes: update merge images to pdf
