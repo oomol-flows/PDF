@@ -29,7 +29,7 @@ outputs_def:
     description: Output
     json_schema:
       type: string
-      ui:widget: file
+      ui:widget: save
 icon: ":fa6-solid:file-pdf:"
 ui:
   default_width: 419.64686341410464
