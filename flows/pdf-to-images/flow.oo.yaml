@@ -3,6 +3,7 @@ nodes:
     title: "PDF to images #1"
     inputs_from:
       - handle: pdf_path
+        value: /oomol-driver/oomol-storage/微信背后的产品观 (张小龙) (Z-Library).pdf
       - handle: image_dir
         value: null
     task: self::pdf2images
