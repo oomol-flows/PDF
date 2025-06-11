@@ -14,7 +14,7 @@ def main(params: dict, context: Context):
 
     if pdf_file_path is not None:
         if not pdf_file_path.lower().endswith(".pdf"):
-            pdf_file_path = f"{pdf_file_path}/{context.job_id}.pdf"
+            pdf_file_path = f"{pdf_file_path}/{context.job_id}.pdf" if not os.path.isdir(pdf_file_path) else os.path.join(pdf_file_path, f"{context.job_id}.pdf")
     else:
         pdf_file_path = os.path.join(
             context.session_dir,

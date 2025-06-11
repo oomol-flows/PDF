@@ -30,7 +30,7 @@ outputs_def:
     json_schema:
       type: string
       ui:widget: save
-icon: ":fa6-solid:file-pdf:"
+icon: ":carbon:document-pdf:"
 ui:
   default_width: 419.64686341410464
 executor:
