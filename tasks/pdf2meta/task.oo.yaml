@@ -17,4 +17,4 @@ outputs_def:
       additionalProperties:
         type: string
 title: PDF to meta
-icon: ":fa6-solid:circle-info:"
+icon: ":carbon:data-enrichment-add:"

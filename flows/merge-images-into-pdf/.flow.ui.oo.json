@@ -9,14 +9,6 @@
         }
       }
     },
-    "copy_file#1": {
-      "rfNode": {
-        "position": {
-          "x": 972,
-          "y": 40.5
-        }
-      }
-    },
     "list_files_from_folder#1": {
       "rfNode": {
         "position": {

@@ -15,16 +15,6 @@ nodes:
         value:
       - handle: author
         value:
-  - task: oomol-file::copy_file
-    title: "Copy file #1"
-    node_id: copy_file#1
-    inputs_from:
-      - handle: source_file
-        from_node:
-          - node_id: images2pdf#1
-            output_handle: pdf_file_path
-      - handle: destination_dir
-        value:
   - task: oomol-file::list_files_from_folder
     title: "List files from folder #1"
     node_id: list_files_from_folder#1
