@@ -12,6 +12,12 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: pdf
+            extensions:
+              - pdf
     value:
     nullable: true
   - handle: title
