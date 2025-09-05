@@ -10,7 +10,13 @@ requires-python = ">=3.10"
 dependencies = [
     "pillow (==10.4.0)",
     "pypdf2 (==3.0.1)",
-    "pdf2image (==1.17.0)"
+    "pdf2image (==1.17.0)",
+    "pypdf (==5.0.1)",
+    "reportlab (==4.2.5)",
+    "pdfplumber (==0.11.4)",
+    "pytesseract (==0.3.13)",
+    "weasyprint (==62.3)",
+    "wand (==0.6.13)"
 ]
 
 

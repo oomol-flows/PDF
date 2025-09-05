@@ -1,0 +1,49 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output PDF file with deleted pages
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: pages_to_delete
+    description: Pages to delete (e.g., "1,3,5-7")
+    json_schema:
+      type: string
+
+outputs_def:
+  - handle: output_path
+    description: PDF file with deleted pages
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: pages_deleted
+    description: Number of pages deleted
+    json_schema:
+      type: number
+  - handle: remaining_pages
+    description: Number of remaining pages
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Delete Pages
+icon: ":carbon:delete:"
+description: Remove specific pages from PDF files
+
+ui:
+  default_width: 450

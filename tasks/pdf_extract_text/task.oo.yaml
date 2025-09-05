@@ -1,0 +1,59 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file to extract text from
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_format
+    description: Output format for extracted text
+    json_schema:
+      type: string
+      enum:
+        - "plain_text"
+        - "json"
+        - "csv"
+    value: "plain_text"
+  - handle: page_range
+    description: Pages to extract (e.g., "1-3,5" or "all")
+    json_schema:
+      type: string
+    value: "all"
+  - handle: preserve_formatting
+    description: Preserve text formatting and layout
+    json_schema:
+      type: boolean
+    value: true
+  - handle: output_file
+    description: Output file for extracted text
+    json_schema:
+      type: string
+      ui:widget: save
+    nullable: true
+
+outputs_def:
+  - handle: extracted_text
+    description: Extracted text content
+    json_schema:
+      type: string
+  - handle: output_file
+    description: Output file path (if specified)
+    json_schema:
+      type: string
+    nullable: true
+  - handle: pages_processed
+    description: Number of pages processed
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Text Extract
+icon: ":carbon:pointer-text:"
+description: Extract text content from PDF files
+
+ui:
+  default_width: 450

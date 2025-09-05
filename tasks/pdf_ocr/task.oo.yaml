@@ -1,0 +1,72 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input scanned PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output searchable PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: language
+    description: OCR language
+    json_schema:
+      type: string
+      enum:
+        - "eng"
+        - "chi_sim"
+        - "chi_tra"
+        - "jpn"
+        - "kor"
+        - "fra"
+        - "deu"
+        - "spa"
+        - "rus"
+    value: "eng"
+  - handle: dpi
+    description: Image resolution for OCR
+    json_schema:
+      type: number
+      minimum: 150
+      maximum: 600
+    value: 300
+  - handle: preserve_images
+    description: Preserve original images in output
+    json_schema:
+      type: boolean
+    value: true
+
+outputs_def:
+  - handle: output_path
+    description: Searchable PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: pages_processed
+    description: Number of pages processed
+    json_schema:
+      type: number
+  - handle: confidence_score
+    description: Average OCR confidence score
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF OCR
+icon: ":carbon:ibm-cloud-direct-link-1-dedicated-hosting:"
+description: Convert scanned PDFs to searchable text using OCR
+
+ui:
+  default_width: 450

@@ -1,0 +1,71 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output compressed PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: compression_level
+    description: Compression level
+    json_schema:
+      type: string
+      enum:
+        - "low"
+        - "medium"
+        - "high"
+        - "maximum"
+    value: "medium"
+  - handle: image_quality
+    description: Image quality (1-100, lower = smaller file)
+    json_schema:
+      type: number
+      minimum: 1
+      maximum: 100
+    value: 75
+  - handle: remove_duplicates
+    description: Remove duplicate objects
+    json_schema:
+      type: boolean
+    value: true
+
+outputs_def:
+  - handle: output_path
+    description: Compressed PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: original_size
+    description: Original file size (bytes)
+    json_schema:
+      type: number
+  - handle: compressed_size
+    description: Compressed file size (bytes)
+    json_schema:
+      type: number
+  - handle: compression_ratio
+    description: Compression ratio percentage
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Compress
+icon: ":carbon:package:"
+description: Reduce PDF file size using various compression techniques
+
+ui:
+  default_width: 450
