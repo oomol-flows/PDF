@@ -1,0 +1,10 @@
+nodes:
+  - node_id: pdf_decrypt#1
+    title: "PDF Decrypt #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/oomol-storage/pdf/简论《雾都孤儿》现实性和浪漫性的融合.pdf
+      - handle: output_path
+        value: /oomol-driver/oomol-storage/pdf/pdf.pdf
+      - handle: password
+    task: self::pdf_decrypt

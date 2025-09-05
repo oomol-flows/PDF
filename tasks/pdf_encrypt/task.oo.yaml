@@ -19,12 +19,10 @@ inputs_def:
     description: User password (for opening the PDF)
     json_schema:
       type: string
-      contentMediaType: oomol/secret
   - handle: owner_password
     description: Owner password (for permissions)
     json_schema:
       type: string
-      contentMediaType: oomol/secret
     nullable: true
   - handle: allow_printing
     description: Allow printing
@@ -60,4 +58,4 @@ icon: ":carbon:locked:"
 description: Password protect PDF files with encryption
 
 ui:
-  default_width: 450
+  default_width: 617.610018733854

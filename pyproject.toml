@@ -6,7 +6,7 @@ authors = [
     {name = "TaoZeyu",email = "i@taozeyu.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<4"
 dependencies = [
     "pillow (==10.4.0)",
     "pypdf2 (==3.0.1)",

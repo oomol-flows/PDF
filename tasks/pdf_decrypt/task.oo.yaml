@@ -19,7 +19,6 @@ inputs_def:
     description: Password to decrypt the PDF
     json_schema:
       type: string
-      contentMediaType: oomol/secret
 
 outputs_def:
   - handle: output_path
