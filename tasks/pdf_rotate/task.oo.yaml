@@ -1,0 +1,52 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file to rotate
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output rotated PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: rotation_angle
+    description: Rotation angle in degrees
+    json_schema:
+      type: number
+      enum: [90, 180, 270]
+    value: 90
+  - handle: page_range
+    description: Pages to rotate (e.g., "1-3,5,7-9" or "all")
+    json_schema:
+      type: string
+    value: "all"
+
+outputs_def:
+  - handle: output_path
+    description: Rotated PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: pages_rotated
+    description: Number of pages rotated
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Rotate
+icon: ":carbon:rotate-clockwise:"
+description: Rotate PDF pages by specified angles
+
+ui:
+  default_width: 450

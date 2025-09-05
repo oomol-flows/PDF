@@ -1,0 +1,92 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: watermark_text
+    description: Watermark text (leave empty for image watermark)
+    json_schema:
+      type: string
+    value: ""
+    nullable: true
+  - handle: watermark_image
+    description: Watermark image file
+    json_schema:
+      type: string
+      ui:widget: file
+    nullable: true
+  - handle: output_path
+    description: Output PDF file path
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: position_x
+    description: Watermark X position (0-1, 0=left, 1=right)
+    json_schema:
+      type: number
+      minimum: 0
+      maximum: 1
+    value: 0.5
+  - handle: position_y
+    description: Watermark Y position (0-1, 0=bottom, 1=top)
+    json_schema:
+      type: number
+      minimum: 0
+      maximum: 1
+    value: 0.5
+  - handle: opacity
+    description: Watermark opacity (0-1, 0=transparent, 1=opaque)
+    json_schema:
+      type: number
+      minimum: 0
+      maximum: 1
+    value: 0.3
+  - handle: font_size
+    description: Font size for text watermark
+    json_schema:
+      type: number
+      minimum: 8
+      maximum: 72
+    value: 36
+  - handle: rotation
+    description: Watermark rotation angle (degrees)
+    json_schema:
+      type: number
+      minimum: -180
+      maximum: 180
+    value: 45
+  - handle: color
+    description: Text watermark color
+    json_schema:
+      type: string
+      ui:widget: color
+      ui:options:
+        colorType: HEX
+    value: "#808080"
+
+outputs_def:
+  - handle: output_path
+    description: Watermarked PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Watermark
+icon: ":carbon:checkmark-outline:"
+description: Add text or image watermarks to PDF files
+
+ui:
+  default_width: 450

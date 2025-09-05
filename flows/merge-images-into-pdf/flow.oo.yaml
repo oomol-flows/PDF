@@ -26,3 +26,25 @@ nodes:
         value: false
       - handle: absolute_path
         value: true
+  - node_id: html_to_pdf#1
+    title: "HTML to PDF #1"
+    inputs_from:
+      - handle: input_source
+        value: html_file
+      - handle: html_file
+      - handle: html_string
+      - handle: url
+      - handle: output_path
+      - handle: page_size
+        value: A4
+      - handle: orientation
+        value: portrait
+      - handle: margin_top
+        value: 20
+      - handle: margin_bottom
+        value: 20
+      - handle: margin_left
+        value: 20
+      - handle: margin_right
+        value: 20
+    task: self::html_to_pdf

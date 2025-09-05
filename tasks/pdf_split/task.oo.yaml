@@ -1,0 +1,63 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file to split
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_dir
+    description: Output directory for split files
+    json_schema:
+      type: string
+      ui:widget: dir
+  - handle: split_mode
+    description: Split mode
+    json_schema:
+      type: string
+      enum:
+        - "single_pages"
+        - "page_ranges"
+        - "bookmarks"
+        - "equal_parts"
+    value: "single_pages"
+  - handle: page_ranges
+    description: Page ranges (e.g., "1-3,5-7,10") - only for page_ranges mode
+    json_schema:
+      type: string
+    value: ""
+    nullable: true
+  - handle: pages_per_part
+    description: Pages per part - only for equal_parts mode
+    json_schema:
+      type: number
+      minimum: 1
+    value: 10
+  - handle: filename_prefix
+    description: Prefix for output filenames
+    json_schema:
+      type: string
+    value: "page"
+
+outputs_def:
+  - handle: output_files
+    description: List of created PDF files
+    json_schema:
+      type: array
+      items:
+        type: string
+  - handle: files_created
+    description: Number of files created
+    json_schema:
+      type: number
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Split
+icon: ":carbon:split:"
+description: Split PDF into separate files by pages or sections
+
+ui:
+  default_width: 450

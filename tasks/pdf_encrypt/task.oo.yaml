@@ -1,0 +1,61 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file to encrypt
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output encrypted PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: user_password
+    description: User password (for opening the PDF)
+    json_schema:
+      type: string
+  - handle: owner_password
+    description: Owner password (for permissions)
+    json_schema:
+      type: string
+    nullable: true
+  - handle: allow_printing
+    description: Allow printing
+    json_schema:
+      type: boolean
+    value: true
+  - handle: allow_copying
+    description: Allow copying text
+    json_schema:
+      type: boolean
+    value: true
+  - handle: allow_modification
+    description: Allow document modification
+    json_schema:
+      type: boolean
+    value: false
+
+outputs_def:
+  - handle: output_path
+    description: Encrypted PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Encrypt
+icon: ":carbon:locked:"
+description: Password protect PDF files with encryption
+
+ui:
+  default_width: 617.610018733854

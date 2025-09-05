@@ -1,0 +1,45 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input encrypted PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output decrypted PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: password
+    description: Password to decrypt the PDF
+    json_schema:
+      type: string
+
+outputs_def:
+  - handle: output_path
+    description: Decrypted PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: was_encrypted
+    description: Whether the PDF was encrypted
+    json_schema:
+      type: boolean
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Decrypt
+icon: ":carbon:unlocked:"
+description: Remove password protection from encrypted PDF files
+
+ui:
+  default_width: 450

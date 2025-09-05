@@ -4,17 +4,21 @@ executor:
     entry: __init__.py
 inputs_def:
   - handle: pdf
+    description: Input PDF file to extract metadata from
     json_schema:
       type: string
       ui:widget: file
 outputs_def:
   - handle: name
+    description: PDF document name
     json_schema:
       type: string
   - handle: meta
+    description: PDF metadata information
     json_schema:
       type: object
       additionalProperties:
         type: string
 title: PDF to meta
 icon: ":carbon:data-enrichment-add:"
+description: Extract metadata and document information from PDF files

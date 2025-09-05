@@ -1,0 +1,80 @@
+inputs_def:
+  - handle: pdf_path
+    description: Input PDF file
+    json_schema:
+      type: string
+      ui:widget: file
+  - handle: output_path
+    description: Output annotated PDF file
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
+  - handle: annotation_type
+    description: Type of annotation to add
+    json_schema:
+      type: string
+      enum:
+        - "text"
+        - "highlight"
+        - "note"
+        - "stamp"
+    value: "text"
+  - handle: page_number
+    description: Page number to annotate (1-based)
+    json_schema:
+      type: number
+      minimum: 1
+    value: 1
+  - handle: x_position
+    description: X position (0-1, 0=left, 1=right)
+    json_schema:
+      type: number
+      minimum: 0
+      maximum: 1
+    value: 0.1
+  - handle: y_position
+    description: Y position (0-1, 0=bottom, 1=top)
+    json_schema:
+      type: number
+      minimum: 0
+      maximum: 1
+    value: 0.9
+  - handle: annotation_text
+    description: Annotation text content
+    json_schema:
+      type: string
+    value: "Annotation"
+  - handle: color
+    description: Annotation color
+    json_schema:
+      type: string
+      ui:widget: color
+      ui:options:
+        colorType: HEX
+    value: "#FFFF00"
+
+outputs_def:
+  - handle: output_path
+    description: Annotated PDF file path
+    json_schema:
+      type: string
+      ui:widget: file
+
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+
+title: PDF Annotate
+icon: ":carbon:text-annotation-toggle:"
+description: Add annotations and comments to PDF files
+
+ui:
+  default_width: 450
