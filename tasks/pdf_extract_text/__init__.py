@@ -2,10 +2,14 @@
 import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
-    output_format: str
+    output_format: typing.Literal["plain_text", "json", "csv"]
     page_range: str
     preserve_formatting: bool
-    output_file: typing.Optional[str]
+    output_file: str | None
+class Outputs(typing.TypedDict):
+    extracted_text: str
+    output_file: str | None
+    pages_processed: float
 #endregion
 
 from oocana import Context

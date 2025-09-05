@@ -3,10 +3,13 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_dir: str
-    split_mode: str
-    page_ranges: typing.Optional[str]
-    pages_per_part: int
+    split_mode: typing.Literal["single_pages", "page_ranges", "bookmarks", "equal_parts"]
+    page_ranges: str | None
+    pages_per_part: float
     filename_prefix: str
+class Outputs(typing.TypedDict):
+    output_files: list[str]
+    files_created: float
 #endregion
 
 from oocana import Context

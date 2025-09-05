@@ -4,10 +4,12 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
     user_password: str
-    owner_password: typing.Optional[str]
+    owner_password: str | None
     allow_printing: bool
     allow_copying: bool
     allow_modification: bool
+class Outputs(typing.TypedDict):
+    output_path: str
 #endregion
 
 from oocana import Context

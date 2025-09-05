@@ -4,6 +4,10 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
     pages_to_delete: str
+class Outputs(typing.TypedDict):
+    output_path: str
+    pages_deleted: float
+    remaining_pages: float
 #endregion
 
 from oocana import Context

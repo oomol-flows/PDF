@@ -1,17 +1,19 @@
 #region generated meta
 import typing
 class Inputs(typing.TypedDict):
-    input_source: str
-    html_file: typing.Optional[str]
-    html_string: typing.Optional[str]
-    url: typing.Optional[str]
+    input_source: typing.Literal["html_file", "html_string", "url"]
+    html_file: str | None
+    html_string: str | None
+    url: str | None
     output_path: str
-    page_size: str
-    orientation: str
+    page_size: typing.Literal["A4", "A3", "A5", "Letter", "Legal"]
+    orientation: typing.Literal["portrait", "landscape"]
     margin_top: float
     margin_bottom: float
     margin_left: float
     margin_right: float
+class Outputs(typing.TypedDict):
+    output_path: str
 #endregion
 
 from oocana import Context

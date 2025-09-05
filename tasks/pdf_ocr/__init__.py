@@ -3,9 +3,13 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
-    language: str
-    dpi: int
+    language: typing.Literal["eng", "chi_sim", "chi_tra", "jpn", "kor", "fra", "deu", "spa", "rus"]
+    dpi: float
     preserve_images: bool
+class Outputs(typing.TypedDict):
+    output_path: str
+    pages_processed: float
+    confidence_score: float
 #endregion
 
 from oocana import Context

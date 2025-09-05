@@ -3,8 +3,11 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
-    rotation_angle: int
+    rotation_angle: typing.Literal[90, 180, 270]
     page_range: str
+class Outputs(typing.TypedDict):
+    output_path: str
+    pages_rotated: float
 #endregion
 
 from oocana import Context

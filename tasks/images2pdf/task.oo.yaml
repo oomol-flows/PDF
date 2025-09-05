@@ -1,6 +1,6 @@
 inputs_def:
   - handle: image_paths
-    description: Input
+    description: Image files to convert to PDF
     json_schema:
       type: array
       items:
@@ -9,6 +9,7 @@ inputs_def:
     value:
       []
   - handle: pdf_file_path
+    description: Output PDF file path
     json_schema:
       type: string
       ui:widget: save
@@ -21,18 +22,20 @@ inputs_def:
     value:
     nullable: true
   - handle: title
+    description: PDF document title
     json_schema:
       type: string
     value:
     nullable: true
   - handle: author
+    description: PDF document author
     json_schema:
       type: string
     value:
     nullable: true
 outputs_def:
   - handle: pdf_file_path
-    description: Output
+    description: Generated PDF file path
     json_schema:
       type: string
       ui:widget: save
@@ -45,3 +48,4 @@ executor:
     spawn: false
     entry: main.py
 title: Images to PDF
+description: Convert multiple image files into a single PDF document

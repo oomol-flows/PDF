@@ -3,9 +3,14 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
-    compression_level: str
-    image_quality: int
+    compression_level: typing.Literal["low", "medium", "high", "maximum"]
+    image_quality: float
     remove_duplicates: bool
+class Outputs(typing.TypedDict):
+    output_path: str
+    original_size: float
+    compressed_size: float
+    compression_ratio: float
 #endregion
 
 from oocana import Context

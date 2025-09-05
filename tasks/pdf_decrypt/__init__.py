@@ -4,6 +4,9 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
     password: str
+class Outputs(typing.TypedDict):
+    output_path: str
+    was_encrypted: bool
 #endregion
 
 from oocana import Context

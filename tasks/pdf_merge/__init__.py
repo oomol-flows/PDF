@@ -1,10 +1,14 @@
 #region generated meta
 import typing
 class Inputs(typing.TypedDict):
-    pdf_files: typing.List[str]
+    pdf_files: list[str]
     output_path: str
     preserve_bookmarks: bool
     add_page_numbers: bool
+class Outputs(typing.TypedDict):
+    output_path: str
+    total_pages: float
+    file_count: float
 #endregion
 
 from oocana import Context

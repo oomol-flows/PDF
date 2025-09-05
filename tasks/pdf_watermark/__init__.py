@@ -2,15 +2,17 @@
 import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
-    watermark_text: typing.Optional[str]
-    watermark_image: typing.Optional[str]
+    watermark_text: str | None
+    watermark_image: str | None
     output_path: str
     position_x: float
     position_y: float
     opacity: float
-    font_size: int
+    font_size: float
     rotation: float
     color: str
+class Outputs(typing.TypedDict):
+    output_path: str
 #endregion
 
 from oocana import Context

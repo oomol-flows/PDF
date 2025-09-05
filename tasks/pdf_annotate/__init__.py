@@ -3,12 +3,14 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
-    annotation_type: str
-    page_number: int
+    annotation_type: typing.Literal["text", "highlight", "note", "stamp"]
+    page_number: float
     x_position: float
     y_position: float
     annotation_text: str
     color: str
+class Outputs(typing.TypedDict):
+    output_path: str
 #endregion
 
 from oocana import Context

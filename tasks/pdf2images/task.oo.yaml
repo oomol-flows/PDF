@@ -1,10 +1,11 @@
 inputs_def:
   - handle: pdf_path
-    description: Input
+    description: Input PDF file to convert to images
     json_schema:
       type: string
       ui:widget: file
   - handle: image_dir
+    description: Output directory for image files
     json_schema:
       type: string
       ui:widget: dir
@@ -12,7 +13,7 @@ inputs_def:
     nullable: true
 outputs_def:
   - handle: image_dir
-    description: Output
+    description: Directory containing converted image files
     json_schema:
       type: string
       ui:widget: dir
@@ -25,3 +26,4 @@ executor:
     entry: __init__.py
 title: PDF to images
 icon: ":carbon:image:"
+description: Convert PDF pages to individual image files
