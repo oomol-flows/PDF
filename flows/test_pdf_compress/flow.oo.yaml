@@ -1,0 +1,15 @@
+title: "Test PDF Compression Flow"
+nodes:
+  - node_id: pdf_compress#1
+    task: self::pdf_compress
+    inputs_from:
+      - handle: input_pdf
+        value: "/oomol-driver/oomol-storage/test_input.pdf"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/compressed_output.pdf"
+      - handle: compression_level
+        value: 7
+      - handle: optimize_images
+        value: true
+      - handle: remove_metadata
+        value: true

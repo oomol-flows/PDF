@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(poetry lock:*)",
+      "Bash(poetry install:*)",
+      "Bash(python:*)",
+      "Bash(find:*)",
+      "mcp__oomol__runFlow",
+      "mcp__oomol__getTaskResult",
+      "Bash(poetry add:*)",
+      "mcp__ide__executeCode",
+      "Bash(mkdir:*)",
+      "Bash(apt-get update:*)",
+      "Bash(apt-get install:*)",
+      "Bash(touch:*)",
+      "mcp__oomol__listRunningTasks"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
