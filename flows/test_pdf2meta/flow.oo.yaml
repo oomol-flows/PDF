@@ -1,0 +1,7 @@
+title: Test PDF2Meta
+nodes:
+  - node_id: pdf2meta#1
+    task: self::pdf2meta
+    inputs_from:
+      - handle: pdf
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"

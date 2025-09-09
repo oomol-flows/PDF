@@ -67,4 +67,48 @@ def main(params: Inputs, context: Context) -> dict:
             output_text = json.dumps(extracted_data, indent=2, ensure_ascii=False)
         elif params["output_format"] == "csv":
             output = io.StringIO()
-            writer = csv.DictWriter(output, fieldnames=["page", "text"])\n            writer.writeheader()\n            writer.writerows(extracted_data)\n            output_text = output.getvalue()\n        else:  # plain_text\n            output_text = \"\\n\\n\".join([item[\"text\"] for item in extracted_data])\n        \n        # Save to file if specified\n        output_file_path = None\n        if params.get(\"output_file\"):\n            with open(params[\"output_file\"], 'w', encoding='utf-8') as f:\n                f.write(output_text)\n            output_file_path = params[\"output_file\"]\n        \n        return {\n            \"extracted_text\": output_text,\n            \"output_file\": output_file_path,\n            \"pages_processed\": pages_processed\n        }\n        \n    except Exception as e:\n        raise Exception(f\"Error extracting text from PDF: {str(e)}\")\n\ndef parse_page_range(range_str, total_pages):\n    \"\"\"Parse page range string like \"1-3,5\" into list of page indices (0-based)\"\"\"\n    pages = []\n    \n    for part in range_str.split(','):\n        part = part.strip()\n        \n        if '-' in part:\n            # Range like \"1-3\"\n            start, end = part.split('-', 1)\n            start = max(1, int(start.strip()))\n            end = min(total_pages, int(end.strip()))\n            \n            for page_num in range(start, end + 1):\n                pages.append(page_num - 1)  # Convert to 0-based index\n        else:\n            # Single page like \"5\"\n            page_num = int(part.strip())\n            if 1 <= page_num <= total_pages:\n                pages.append(page_num - 1)  # Convert to 0-based index\n    \n    return pages
+            writer = csv.DictWriter(output, fieldnames=["page", "text"])
+            writer.writeheader()
+            writer.writerows(extracted_data)
+            output_text = output.getvalue()
+        else:  # plain_text
+            output_text = "\n\n".join([item["text"] for item in extracted_data])
+        
+        # Save to file if specified
+        output_file_path = None
+        if params.get("output_file"):
+            with open(params["output_file"], 'w', encoding='utf-8') as f:
+                f.write(output_text)
+            output_file_path = params["output_file"]
+        
+        return {
+            "extracted_text": output_text,
+            "output_file": output_file_path,
+            "pages_processed": pages_processed
+        }
+        
+    except Exception as e:
+        raise Exception(f"Error extracting text from PDF: {str(e)}")
+
+def parse_page_range(range_str, total_pages):
+    """Parse page range string like "1-3,5" into list of page indices (0-based)"""
+    pages = []
+    
+    for part in range_str.split(','):
+        part = part.strip()
+        
+        if '-' in part:
+            # Range like "1-3"
+            start, end = part.split('-', 1)
+            start = max(1, int(start.strip()))
+            end = min(total_pages, int(end.strip()))
+            
+            for page_num in range(start, end + 1):
+                pages.append(page_num - 1)  # Convert to 0-based index
+        else:
+            # Single page like "5"
+            page_num = int(part.strip())
+            if 1 <= page_num <= total_pages:
+                pages.append(page_num - 1)  # Convert to 0-based index
+    
+    return pages

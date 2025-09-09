@@ -1,16 +1,14 @@
-icon: "https://package-assets.oomol.com/packages/pdf/0.0.3/files/package/icon.png"
+icon: ./icon.png
 scripts:
-  # Script executed when the container is first loaded
-  # eg: bootstrap: pip install pandas
   bootstrap: |
     set -e
     poetry install --no-root
     sudo apt-get update
     sudo apt-get install poppler-utils -y
 dependencies:
-  oomol-file: 0.0.10
+  {}
 name: pdf
-version: 0.0.17
+version: 0.0.18
 displayName: PDF
 description: Image synthesis to PDF, PDF to image conversion.
 repository: https://github.com/oomol-flows/PDF

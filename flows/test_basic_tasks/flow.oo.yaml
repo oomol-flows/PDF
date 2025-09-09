@@ -1,0 +1,49 @@
+title: Test Basic PDF Tasks
+nodes:
+  # Test pdf2meta
+  - node_id: pdf2meta#1
+    task: self::pdf2meta
+    inputs_from:
+      - handle: pdf
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+
+  # Test pdf2images
+  - node_id: pdf2images#1
+    task: self::pdf2images
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: image_dir
+        value: "/oomol-driver/oomol-storage/test_data/extracted_images"
+
+  # Test pdf_split
+  - node_id: pdf_split#1
+    task: self::pdf_split
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: output_dir
+        value: "/oomol-driver/oomol-storage/test_data/split_pages"
+      - handle: split_mode
+        value: "single_pages"
+      - handle: page_ranges
+        value: ""
+      - handle: pages_per_part
+        value: 10
+      - handle: filename_prefix
+        value: "page"
+
+  # Test pdf_extract_text
+  - node_id: pdf_extract_text#1
+    task: self::pdf_extract_text
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: output_format
+        value: "plain_text"
+      - handle: page_range
+        value: "all"
+      - handle: preserve_formatting
+        value: true
+      - handle: output_file
+        value: null

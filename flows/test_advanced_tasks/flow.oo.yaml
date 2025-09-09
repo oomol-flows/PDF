@@ -1,0 +1,147 @@
+title: Test Advanced PDF Tasks
+nodes:
+  # First create a test PDF using html_to_pdf
+  - node_id: html_to_pdf#1
+    task: self::html_to_pdf
+    inputs_from:
+      - handle: input_source
+        value: "html_string"
+      - handle: html_file
+        value: null
+      - handle: html_string
+        value: "<html><body><h1>Test PDF 1</h1><p>Content for testing advanced
+          tasks.</p></body></html>"
+      - handle: url
+        value: null
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/test_pdf1.pdf"
+      - handle: page_size
+        value: "A4"
+      - handle: orientation
+        value: "portrait"
+      - handle: margin_top
+        value: 20
+      - handle: margin_bottom
+        value: 20
+      - handle: margin_left
+        value: 20
+      - handle: margin_right
+        value: 20
+
+  # Create another test PDF
+  - node_id: html_to_pdf#2
+    task: self::html_to_pdf
+    inputs_from:
+      - handle: input_source
+        value: "html_string"
+      - handle: html_file
+        value: null
+      - handle: html_string
+        value: "<html><body><h1>Test PDF 2</h1><p>Second PDF for merge
+          testing.</p></body></html>"
+      - handle: url
+        value: null
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/test_pdf2.pdf"
+      - handle: page_size
+        value: "A4"
+      - handle: orientation
+        value: "portrait"
+      - handle: margin_top
+        value: 20
+      - handle: margin_bottom
+        value: 20
+      - handle: margin_left
+        value: 20
+      - handle: margin_right
+        value: 20
+
+  # Test PDF merge - using existing test files
+  - node_id: pdf_merge#1
+    task: self::pdf_merge
+    inputs_from:
+      - handle: pdf_files
+        value:
+          - "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+          - "/oomol-driver/oomol-storage/test_data/test_from_html.pdf"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/merged.pdf"
+      - handle: preserve_bookmarks
+        value: true
+      - handle: add_page_numbers
+        value: false
+
+  # Test PDF encryption
+  - node_id: pdf_encrypt#1
+    task: self::pdf_encrypt
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: pdf_merge#1
+            output_handle: output_path
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/encrypted.pdf"
+      - handle: user_password
+        value: "testpass123"
+      - handle: owner_password
+        value: null
+      - handle: allow_printing
+        value: true
+      - handle: allow_copying
+        value: true
+      - handle: allow_modification
+        value: false
+
+  # Test PDF decryption
+  - node_id: pdf_decrypt#1
+    task: self::pdf_decrypt
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: pdf_encrypt#1
+            output_handle: output_path
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/decrypted.pdf"
+      - handle: password
+        value: "testpass123"
+
+  # Test PDF watermark (text)
+  - node_id: pdf_watermark#1
+    task: self::pdf_watermark
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: pdf_decrypt#1
+            output_handle: output_path
+      - handle: watermark_text
+        value: "CONFIDENTIAL"
+      - handle: watermark_image
+        value: null
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/watermarked.pdf"
+      - handle: position_x
+        value: 0.5
+      - handle: position_y
+        value: 0.5
+      - handle: opacity
+        value: 0.3
+      - handle: font_size
+        value: 36
+      - handle: rotation
+        value: 45
+      - handle: color
+        value: "#808080"
+  - node_id: pdf_merge#2
+    title: "PDF Merge #2"
+    inputs_from:
+      - handle: pdf_files
+        value:
+          - /oomol-driver/oomol-storage/pdf/简论《雾都孤儿》现实性和浪漫性的融合.pdf
+          - /oomol-driver/oomol-storage/pdf/pdf.pdf
+      - handle: output_path
+        value: /oomol-driver/oomol-storage/book/book.pdf
+      - handle: preserve_bookmarks
+        value: true
+      - handle: add_page_numbers
+        value: false
+    task: self::pdf_merge
