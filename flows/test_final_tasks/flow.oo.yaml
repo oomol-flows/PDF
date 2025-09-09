@@ -46,3 +46,15 @@ nodes:
         value: 300
       - handle: preserve_images
         value: true
+  - node_id: pdf_rotate#1
+    title: "PDF Rotate #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/oomol-storage/pdf/page_range_1_1-100.pdf
+      - handle: output_path
+        value: /oomol-driver/oomol-storage/pdf/pdfeee.pdf
+      - handle: rotation_angle
+        value: "90"
+      - handle: page_range
+        value: all
+    task: self::pdf_rotate

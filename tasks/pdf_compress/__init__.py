@@ -6,7 +6,6 @@ class Inputs(typing.TypedDict):
     compression_level: int
     optimize_images: bool
     remove_metadata: bool
-
 class Outputs(typing.TypedDict):
     output_path: str
     original_size: float
