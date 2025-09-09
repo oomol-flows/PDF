@@ -1,0 +1,48 @@
+title: Test Final PDF Tasks
+nodes:
+  # Test PDF annotation
+  - node_id: pdf_annotate#1
+    task: self::pdf_annotate
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/annotated.pdf"
+      - handle: annotation_type
+        value: "text"
+      - handle: page_number
+        value: 1
+      - handle: x_position
+        value: 0.1
+      - handle: y_position
+        value: 0.9
+      - handle: annotation_text
+        value: "Test Annotation"
+      - handle: color
+        value: "#FFFF00"
+
+  # Test PDF delete pages
+  - node_id: pdf_delete_pages#1
+    task: self::pdf_delete_pages
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/deleted_pages.pdf"
+      - handle: pages_to_delete
+        value: "2"
+
+  # Test PDF OCR (requires tesseract)
+  - node_id: pdf_ocr#1
+    task: self::pdf_ocr
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/ocr_output.pdf"
+      - handle: language
+        value: "eng"
+      - handle: dpi
+        value: 300
+      - handle: preserve_images
+        value: true

@@ -64,4 +64,67 @@ def main(params: Inputs, context: Context) -> dict:
             can = canvas.Canvas(packet, pagesize=(page_width, page_height))
             
             # Add invisible text layer for searchability
-            can.setFont(\"Helvetica\", 12)\n            can.setFillColorRGB(0, 0, 0, alpha=0)  # Transparent text\n            \n            # Extract text and positions from OCR data\n            for i in range(len(ocr_data['text'])):\n                text = ocr_data['text'][i].strip()\n                if text and int(ocr_data['conf'][i]) > 30:  # Confidence threshold\n                    x = ocr_data['left'][i]\n                    y = page_height - ocr_data['top'][i]  # Flip Y coordinate\n                    can.drawString(x, y, text)\n            \n            can.save()\n            \n            # Convert image to PDF if preserving images\n            if params[\"preserve_images\"]:\n                # Save original image as background\n                img_packet = io.BytesIO()\n                can_img = canvas.Canvas(img_packet, pagesize=(page_width, page_height))\n                \n                # Save image temporarily\n                temp_img_path = f\"temp_page_{page_num}.png\"\n                image.save(temp_img_path, \"PNG\")\n                can_img.drawImage(temp_img_path, 0, 0, page_width, page_height)\n                can_img.save()\n                \n                # Clean up temp image\n                os.remove(temp_img_path)\n                \n                # Merge text layer with image\n                img_packet.seek(0)\n                from PyPDF2 import PdfReader\n                img_pdf = PdfReader(img_packet)\n                packet.seek(0)\n                text_pdf = PdfReader(packet)\n                \n                if img_pdf.pages and text_pdf.pages:\n                    img_pdf.pages[0].merge_page(text_pdf.pages[0])\n                    writer.add_page(img_pdf.pages[0])\n                else:\n                    writer.add_page(text_pdf.pages[0])\n            else:\n                # Text-only PDF\n                packet.seek(0)\n                from PyPDF2 import PdfReader\n                text_pdf = PdfReader(packet)\n                if text_pdf.pages:\n                    writer.add_page(text_pdf.pages[0])\n            \n            pages_processed += 1\n        \n        # Write OCR'd PDF\n        with open(params[\"output_path\"], 'wb') as output_file:\n            writer.write(output_file)\n        \n        avg_confidence = total_confidence / pages_processed if pages_processed > 0 else 0\n        \n        return {\n            \"output_path\": params[\"output_path\"],\n            \"pages_processed\": pages_processed,\n            \"confidence_score\": round(avg_confidence, 2)\n        }\n        \n    except Exception as e:\n        raise Exception(f\"Error performing OCR on PDF: {str(e)}\")
+            can.setFont("Helvetica", 12)
+            can.setFillColorRGB(0, 0, 0, alpha=0)  # Transparent text
+            
+            # Extract text and positions from OCR data
+            for i in range(len(ocr_data['text'])):
+                text = ocr_data['text'][i].strip()
+                if text and int(ocr_data['conf'][i]) > 30:  # Confidence threshold
+                    x = ocr_data['left'][i]
+                    y = page_height - ocr_data['top'][i]  # Flip Y coordinate
+                    can.drawString(x, y, text)
+            
+            can.save()
+            
+            # Convert image to PDF if preserving images
+            if params["preserve_images"]:
+                # Save original image as background
+                img_packet = io.BytesIO()
+                can_img = canvas.Canvas(img_packet, pagesize=(page_width, page_height))
+                
+                # Save image temporarily
+                temp_img_path = f"temp_page_{page_num}.png"
+                image.save(temp_img_path, "PNG")
+                can_img.drawImage(temp_img_path, 0, 0, page_width, page_height)
+                can_img.save()
+                
+                # Clean up temp image
+                os.remove(temp_img_path)
+                
+                # Merge text layer with image
+                img_packet.seek(0)
+                from PyPDF2 import PdfReader
+                img_pdf = PdfReader(img_packet)
+                packet.seek(0)
+                text_pdf = PdfReader(packet)
+                
+                if img_pdf.pages and text_pdf.pages:
+                    img_pdf.pages[0].merge_page(text_pdf.pages[0])
+                    writer.add_page(img_pdf.pages[0])
+                else:
+                    writer.add_page(text_pdf.pages[0])
+            else:
+                # Text-only PDF
+                packet.seek(0)
+                from PyPDF2 import PdfReader
+                text_pdf = PdfReader(packet)
+                if text_pdf.pages:
+                    writer.add_page(text_pdf.pages[0])
+            
+            pages_processed += 1
+        
+        # Write OCR'd PDF
+        with open(params["output_path"], 'wb') as output_file:
+            writer.write(output_file)
+        
+        avg_confidence = total_confidence / pages_processed if pages_processed > 0 else 0
+        
+        return {
+            "output_path": params["output_path"],
+            "pages_processed": pages_processed,
+            "confidence_score": round(avg_confidence, 2)
+        }
+        
+    except Exception as e:
+        raise Exception(f"Error performing OCR on PDF: {str(e)}")

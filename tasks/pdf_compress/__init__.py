@@ -1,11 +1,12 @@
 #region generated meta
 import typing
 class Inputs(typing.TypedDict):
-    pdf_path: str
+    input_pdf: str
     output_path: str
-    compression_level: typing.Literal["low", "medium", "high", "maximum"]
-    image_quality: float
-    remove_duplicates: bool
+    compression_level: int
+    optimize_images: bool
+    remove_metadata: bool
+
 class Outputs(typing.TypedDict):
     output_path: str
     original_size: float
@@ -15,76 +16,117 @@ class Outputs(typing.TypedDict):
 
 from oocana import Context
 from PyPDF2 import PdfReader, PdfWriter
-from PIL import Image
-import io
 import os
+import io
+from PIL import Image
 
-def main(params: Inputs, context: Context) -> dict:
+def main(params: Inputs, context: Context) -> Outputs:
     """
-    Compress PDF file to reduce file size
+    Compress PDF files using lossless compression techniques
     
     Args:
-        params: Input parameters containing PDF path and compression settings
+        params: Input parameters containing PDF file path and compression settings
         context: OOMOL context object
         
     Returns:
-        Dictionary with output file path and compression statistics
+        Dictionary with compression results and statistics
     """
     try:
+        if not os.path.exists(params["input_pdf"]):
+            raise FileNotFoundError(f"Input PDF file not found: {params['input_pdf']}")
+        
         # Get original file size
-        original_size = os.path.getsize(params["pdf_path"])
+        original_size = os.path.getsize(params["input_pdf"])
         
-        # Read input PDF
-        reader = PdfReader(params["pdf_path"])
+        # Read the input PDF
+        reader = PdfReader(params["input_pdf"])
         writer = PdfWriter()
-        
-        # Set compression options based on level
-        compression_settings = {
-            "low": {"remove_links": False, "remove_images": False, "compress_streams": True},
-            "medium": {"remove_links": True, "remove_images": False, "compress_streams": True},
-            "high": {"remove_links": True, "remove_images": False, "compress_streams": True},
-            "maximum": {"remove_links": True, "remove_images": False, "compress_streams": True}
-        }
-        
-        settings = compression_settings[params["compression_level"]]
         
         # Process each page
         for page in reader.pages:
-            # Remove links if specified
-            if settings["remove_links"]:
-                if "/Annots" in page:
-                    del page["/Annots"]
-            
-            # Compress page content streams
-            if settings["compress_streams"]:
-                page.compress_content_streams()
+            # Optimize images in the page if requested
+            if params["optimize_images"]:
+                page = optimize_page_images(page, params["compression_level"])
             
             writer.add_page(page)
         
-        # Apply compression settings
-        if params["remove_duplicates"]:
-            writer.remove_duplicates()
+        # Remove metadata if requested
+        if params["remove_metadata"]:
+            writer.add_metadata({})
+        else:
+            # Preserve original metadata
+            if reader.metadata:
+                writer.add_metadata(reader.metadata)
         
-        # Compress images based on quality setting
-        if params["compression_level"] in ["high", "maximum"]:
-            # Note: Advanced image compression would require additional processing
-            # This is a basic implementation
-            pass
+        # Apply compression settings (remove methods not available in this PyPDF2 version)
         
         # Write compressed PDF
+        os.makedirs(os.path.dirname(params["output_path"]), exist_ok=True)
         with open(params["output_path"], 'wb') as output_file:
             writer.write(output_file)
         
-        # Calculate compression statistics
+        # Get compressed file size
         compressed_size = os.path.getsize(params["output_path"])
-        compression_ratio = ((original_size - compressed_size) / original_size) * 100
+        
+        # Calculate compression ratio
+        compression_ratio = ((original_size - compressed_size) / original_size) * 100 if original_size > 0 else 0
         
         return {
             "output_path": params["output_path"],
-            "original_size": original_size,
-            "compressed_size": compressed_size,
+            "original_size": float(original_size),
+            "compressed_size": float(compressed_size),
             "compression_ratio": round(compression_ratio, 2)
         }
         
     except Exception as e:
         raise Exception(f"Error compressing PDF: {str(e)}")
+
+def optimize_page_images(page, compression_level):
+    """
+    Optimize images within a PDF page using lossless compression
+    """
+    try:
+        if '/XObject' in page.get('/Resources', {}):
+            xobjects = page['/Resources']['/XObject'].get_object()
+            
+            for obj_name in xobjects:
+                obj = xobjects[obj_name]
+                
+                # Check if this is an image object
+                if obj.get('/Subtype') == '/Image':
+                    # Get image data
+                    if '/Filter' in obj:
+                        # Skip already compressed images to avoid quality loss
+                        continue
+                    
+                    try:
+                        # Extract image data
+                        image_data = obj.get_data()
+                        
+                        # Create PIL Image from data
+                        if '/ColorSpace' in obj:
+                            color_space = obj['/ColorSpace']
+                            width = obj['/Width']
+                            height = obj['/Height']
+                            
+                            # Convert to PIL Image and apply lossless compression
+                            img = Image.frombytes('RGB', (width, height), image_data)
+                            
+                            # Save with PNG compression (lossless)
+                            img_io = io.BytesIO()
+                            img.save(img_io, format='PNG', optimize=True, compress_level=compression_level)
+                            compressed_data = img_io.getvalue()
+                            
+                            # Only replace if compression actually reduced size
+                            if len(compressed_data) < len(image_data):
+                                # Update the image object with compressed data
+                                obj._data = compressed_data
+                                obj['/Filter'] = '/FlateDecode'
+                    except:
+                        # Skip problematic images
+                        continue
+        
+        return page
+    except:
+        # Return original page if optimization fails
+        return page

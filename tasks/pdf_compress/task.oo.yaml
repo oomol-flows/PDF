@@ -1,71 +1,79 @@
 inputs_def:
-  - handle: pdf_path
-    description: Input PDF file
+  - handle: input_pdf
+    description: "Input PDF file to compress"
     json_schema:
       type: string
       ui:widget: file
+      ui:options:
+        filters:
+          - name: PDF Files
+            extensions:
+              - pdf
+    nullable: false
+
   - handle: output_path
-    description: Output compressed PDF file
+    description: "Output path for compressed PDF"
     json_schema:
       type: string
       ui:widget: save
       ui:options:
-        excludeAll: true
         filters:
-          - name: PDF
+          - name: PDF Files
             extensions:
               - pdf
+        excludeAll: true
+    nullable: false
+
   - handle: compression_level
-    description: Compression level
+    description: "Compression level (1-9, higher means better compression)"
     json_schema:
-      type: string
-      enum:
-        - "low"
-        - "medium"
-        - "high"
-        - "maximum"
-    value: "medium"
-  - handle: image_quality
-    description: Image quality (1-100, lower = smaller file)
-    json_schema:
-      type: number
+      type: integer
       minimum: 1
-      maximum: 100
-    value: 75
-  - handle: remove_duplicates
-    description: Remove duplicate objects
+      maximum: 9
+      default: 6
+    nullable: false
+
+  - handle: optimize_images
+    description: "Optimize embedded images"
     json_schema:
       type: boolean
-    value: true
+      default: true
+    nullable: false
+
+  - handle: remove_metadata
+    description: "Remove unnecessary metadata"
+    json_schema:
+      type: boolean
+      default: true
+    nullable: false
 
 outputs_def:
   - handle: output_path
-    description: Compressed PDF file path
+    description: "Path to compressed PDF file"
     json_schema:
       type: string
-      ui:widget: file
+
   - handle: original_size
-    description: Original file size (bytes)
+    description: "Original file size in bytes"
     json_schema:
       type: number
+
   - handle: compressed_size
-    description: Compressed file size (bytes)
+    description: "Compressed file size in bytes"
     json_schema:
       type: number
+
   - handle: compression_ratio
-    description: Compression ratio percentage
+    description: "Compression ratio percentage"
     json_schema:
       type: number
 
 executor:
   name: python
   options:
-    spawn: false
     entry: __init__.py
+    spawn: false
 
-title: PDF Compress
-icon: ":carbon:package:"
-description: Reduce PDF file size using various compression techniques
-
-ui:
-  default_width: 450
+title: "PDF Lossless Compression"
+icon: ":carbon:pressure:"
+description: "Compress PDF files without quality loss using various optimization techniques"

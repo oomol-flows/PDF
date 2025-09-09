@@ -46,6 +46,6 @@ executor:
   name: python
   options:
     spawn: false
-    entry: main.py
+    entry: __init__.py
 title: Images to PDF
 description: Convert multiple image files into a single PDF document

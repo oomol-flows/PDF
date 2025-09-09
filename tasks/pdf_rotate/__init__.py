@@ -3,7 +3,7 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
-    rotation_angle: typing.Literal[90, 180, 270]
+    rotation_angle: typing.Literal["90", "180", "270"]
     page_range: str
 class Outputs(typing.TypedDict):
     output_path: str
@@ -12,7 +12,36 @@ class Outputs(typing.TypedDict):
 
 from oocana import Context
 from PyPDF2 import PdfReader, PdfWriter
-import re
+
+def string_to_number(value: str) -> float:
+    """
+    Convert string to number (int or float)
+    
+    Args:
+        value: String representation of a number
+        
+    Returns:
+        Numeric value as float
+        
+    Raises:
+        ValueError: If string cannot be converted to number
+    """
+    if not isinstance(value, str):
+        raise ValueError("Input must be a string")
+    
+    value = value.strip()
+    if not value:
+        raise ValueError("Empty string cannot be converted to number")
+    
+    try:
+        # Try integer first
+        if '.' not in value and 'e' not in value.lower():
+            return float(int(value))
+        else:
+            # Handle float
+            return float(value)
+    except ValueError as e:
+        raise ValueError(f"Cannot convert '{value}' to number: {str(e)}")
 
 def main(params: Inputs, context: Context) -> dict:
     """
@@ -48,7 +77,8 @@ def main(params: Inputs, context: Context) -> dict:
             
             # Rotate if this page is in the range
             if page_num in pages_to_rotate:
-                page.rotate(params["rotation_angle"])
+                rotation_degrees = int(string_to_number(params["rotation_angle"]))
+                page.rotate(rotation_degrees)
                 pages_rotated += 1
             
             writer.add_page(page)
@@ -75,14 +105,14 @@ def parse_page_range(range_str, total_pages):
         if '-' in part:
             # Range like "1-3"
             start, end = part.split('-', 1)
-            start = max(1, int(start.strip()))
-            end = min(total_pages, int(end.strip()))
+            start = max(1, int(string_to_number(start.strip())))
+            end = min(total_pages, int(string_to_number(end.strip())))
             
             for page_num in range(start, end + 1):
                 pages.add(page_num - 1)  # Convert to 0-based index
         else:
             # Single page like "5"
-            page_num = int(part.strip())
+            page_num = int(string_to_number(part.strip()))
             if 1 <= page_num <= total_pages:
                 pages.add(page_num - 1)  # Convert to 0-based index
     

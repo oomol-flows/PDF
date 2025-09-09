@@ -65,7 +65,7 @@ def main(params: Inputs, context: Context) -> dict:
                 # Rotate and draw text
                 can.translate(x_pos, y_pos)
                 can.rotate(params["rotation"])
-                can.drawCentredText(0, 0, params["watermark_text"])
+                can.drawCentredString(0, 0, params["watermark_text"])
                 
             elif params.get("watermark_image") and os.path.exists(params["watermark_image"]):
                 # Image watermark

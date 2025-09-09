@@ -1,0 +1,68 @@
+title: Test All PDF Tasks
+nodes:
+  # Test html_to_pdf - providing all required parameters
+  - node_id: html_to_pdf#1
+    task: self::html_to_pdf
+    inputs_from:
+      - handle: input_source
+        value: "html_string"
+      - handle: html_file
+        value: null
+      - handle: html_string
+        value: "<html><body><h1>Test HTML</h1><p>This is a test
+          document.</p></body></html>"
+      - handle: url
+        value: null
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/test_from_html.pdf"
+      - handle: page_size
+        value: "A4"
+      - handle: orientation
+        value: "portrait"
+      - handle: margin_top
+        value: 20
+      - handle: margin_bottom
+        value: 20
+      - handle: margin_left
+        value: 20
+      - handle: margin_right
+        value: 20
+
+  # Test pdf2meta - using correct parameter name
+  - node_id: pdf2meta#1
+    task: self::pdf2meta
+    inputs_from:
+      - handle: pdf
+        from_node:
+          - node_id: html_to_pdf#1
+            output_handle: output_path
+
+  # Test pdf2images - using correct parameter names
+  - node_id: pdf2images#1
+    task: self::pdf2images
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: html_to_pdf#1
+            output_handle: output_path
+      - handle: image_dir
+        value: "/oomol-driver/oomol-storage/test_data/extracted_images"
+
+  # Test pdf_split - using correct parameter names with all required values
+  - node_id: pdf_split#1
+    task: self::pdf_split
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: html_to_pdf#1
+            output_handle: output_path
+      - handle: output_dir
+        value: "/oomol-driver/oomol-storage/test_data/split_pages"
+      - handle: split_mode
+        value: "single_pages"
+      - handle: page_ranges
+        value: ""
+      - handle: pages_per_part
+        value: 10
+      - handle: filename_prefix
+        value: "page"

@@ -1,0 +1,36 @@
+{
+  "nodes": {
+    "html_to_pdf#1": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "pdf2meta#1": {
+      "rfNode": {
+        "position": {
+          "x": 1200,
+          "y": 0
+        }
+      }
+    },
+    "pdf2images#1": {
+      "rfNode": {
+        "position": {
+          "x": 1800,
+          "y": 0
+        }
+      }
+    },
+    "pdf_split#1": {
+      "rfNode": {
+        "position": {
+          "x": 2400,
+          "y": 0
+        }
+      }
+    }
+  }
+}
