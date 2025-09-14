@@ -8,11 +8,8 @@ scripts:
 dependencies:
   {}
 name: pdf
-version: 0.0.18
+version: 0.0.19
 displayName: PDF
-description: This toolkit transforms your OOMOL workspace into a complete PDF
-  processing powerhouse. With 15+ specialized blocks, you can handle everything
-  from basic operations like merging and splitting to advanced features like
-  OCR, form filling, and security management.
+description: "%key%"
 repository: https://github.com/oomol-flows/PDF
 releaseNotes: fix bug

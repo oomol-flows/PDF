@@ -1,6 +1,12 @@
 {
-  "title": "Test PDF Compression Flow",
-  "icon": ":carbon:compress:",
-  "default_width": 800,
-  "default_height": 600
+  "nodes": {
+    "pdf_compress#1": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    }
+  }
 }
