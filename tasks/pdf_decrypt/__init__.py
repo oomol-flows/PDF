@@ -5,8 +5,8 @@ class Inputs(typing.TypedDict):
     output_path: str
     password: str
 class Outputs(typing.TypedDict):
-    output_path: str
-    was_encrypted: bool
+    output_path: typing.NotRequired[str]
+    was_encrypted: typing.NotRequired[bool]
 #endregion
 
 from oocana import Context

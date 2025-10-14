@@ -8,8 +8,8 @@ class Inputs(typing.TypedDict):
     pages_per_part: float
     filename_prefix: str
 class Outputs(typing.TypedDict):
-    output_files: list[str]
-    files_created: float
+    output_files: typing.NotRequired[list[str]]
+    files_created: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

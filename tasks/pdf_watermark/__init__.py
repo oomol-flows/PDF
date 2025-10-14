@@ -12,7 +12,7 @@ class Inputs(typing.TypedDict):
     rotation: float
     color: str
 class Outputs(typing.TypedDict):
-    output_path: str
+    output_path: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

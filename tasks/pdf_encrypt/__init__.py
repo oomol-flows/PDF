@@ -9,7 +9,7 @@ class Inputs(typing.TypedDict):
     allow_copying: bool
     allow_modification: bool
 class Outputs(typing.TypedDict):
-    output_path: str
+    output_path: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

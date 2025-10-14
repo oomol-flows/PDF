@@ -6,8 +6,8 @@ class Inputs(typing.TypedDict):
     rotation_angle: typing.Literal["90", "180", "270"]
     page_range: str
 class Outputs(typing.TypedDict):
-    output_path: str
-    pages_rotated: float
+    output_path: typing.NotRequired[str]
+    pages_rotated: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

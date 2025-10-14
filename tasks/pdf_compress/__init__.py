@@ -7,10 +7,10 @@ class Inputs(typing.TypedDict):
     optimize_images: bool
     remove_metadata: bool
 class Outputs(typing.TypedDict):
-    output_path: str
-    original_size: float
-    compressed_size: float
-    compression_ratio: float
+    output_path: typing.NotRequired[str]
+    original_size: typing.NotRequired[float]
+    compressed_size: typing.NotRequired[float]
+    compression_ratio: typing.NotRequired[float]
 #endregion
 
 from oocana import Context
