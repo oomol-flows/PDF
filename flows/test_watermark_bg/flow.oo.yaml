@@ -1,0 +1,27 @@
+title: "Test PDF Watermark Background"
+nodes:
+  - node_id: pdf_watermark#1
+    task: self::pdf_watermark
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/pdf/样稿.pdf"
+      - handle: watermark_text
+        value: "CONFIDENTIAL"
+      - handle: watermark_image
+        value: null
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/pdf/watermarked_bg.pdf"
+      - handle: position_x
+        value: 0.5
+      - handle: position_y
+        value: 0.5
+      - handle: layer
+        value: "background"
+      - handle: opacity
+        value: 0.05
+      - handle: font_size
+        value: 48
+      - handle: rotation
+        value: 45
+      - handle: color
+        value: "#C3C3C3"
