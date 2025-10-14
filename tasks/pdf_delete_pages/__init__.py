@@ -5,9 +5,9 @@ class Inputs(typing.TypedDict):
     output_path: str
     pages_to_delete: str
 class Outputs(typing.TypedDict):
-    output_path: str
-    pages_deleted: float
-    remaining_pages: float
+    output_path: typing.NotRequired[str]
+    pages_deleted: typing.NotRequired[float]
+    remaining_pages: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

@@ -7,9 +7,9 @@ class Inputs(typing.TypedDict):
     preserve_formatting: bool
     output_file: str | None
 class Outputs(typing.TypedDict):
-    extracted_text: str
-    output_file: str | None
-    pages_processed: float
+    extracted_text: typing.NotRequired[str]
+    output_file: typing.NotRequired[str | None]
+    pages_processed: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

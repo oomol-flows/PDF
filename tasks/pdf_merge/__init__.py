@@ -6,9 +6,9 @@ class Inputs(typing.TypedDict):
     preserve_bookmarks: bool
     add_page_numbers: bool
 class Outputs(typing.TypedDict):
-    output_path: str
-    total_pages: float
-    file_count: float
+    output_path: typing.NotRequired[str]
+    total_pages: typing.NotRequired[float]
+    file_count: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

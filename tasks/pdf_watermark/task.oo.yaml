@@ -1,23 +1,23 @@
 inputs_def:
   - handle: pdf_path
-    description: Input PDF file
+    description: "%input-pdf-file3%"
     json_schema:
       type: string
       ui:widget: file
   - handle: watermark_text
-    description: Watermark text (leave empty for image watermark)
+    description: "%watermark-text-leave-empty-for-image-watermark%"
     json_schema:
       type: string
     value: ""
     nullable: true
   - handle: watermark_image
-    description: Watermark image file
+    description: "%watermark-image-file%"
     json_schema:
       type: string
       ui:widget: file
     nullable: true
   - handle: output_path
-    description: Output PDF file path
+    description: "%output-pdf-file-path2%"
     json_schema:
       type: string
       ui:widget: save
@@ -28,42 +28,42 @@ inputs_def:
             extensions:
               - pdf
   - handle: position_x
-    description: Watermark X position (0-1, 0=left, 1=right)
+    description: "%watermark-x-position-0-1-0-left-1-right%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
     value: 0.5
   - handle: position_y
-    description: Watermark Y position (0-1, 0=bottom, 1=top)
+    description: "%watermark-y-position-0-1-0-bottom-1-top%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
     value: 0.5
   - handle: opacity
-    description: Watermark opacity (0-1, 0=transparent, 1=opaque)
+    description: "%watermark-opacity-0-1-0-transparent-1-opaque%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
     value: 0.3
   - handle: font_size
-    description: Font size for text watermark
+    description: "%font-size-for-text-watermark%"
     json_schema:
       type: number
       minimum: 8
       maximum: 72
     value: 36
   - handle: rotation
-    description: Watermark rotation angle (degrees)
+    description: "%watermark-rotation-angle-degrees%"
     json_schema:
       type: number
       minimum: -180
       maximum: 180
     value: 45
   - handle: color
-    description: Text watermark color
+    description: "%text-watermark-color%"
     json_schema:
       type: string
       ui:widget: color
@@ -84,9 +84,9 @@ executor:
     spawn: false
     entry: __init__.py
 
-title: PDF Watermark
+title: "%pdf-watermark%"
 icon: ":carbon:checkmark-outline:"
-description: Add text or image watermarks to PDF files
+description: "%add-text-or-image-watermarks-to-pdf-files%"
 
 ui:
   default_width: 450

@@ -13,7 +13,7 @@ class Inputs(typing.TypedDict):
     margin_left: float
     margin_right: float
 class Outputs(typing.TypedDict):
-    output_path: str
+    output_path: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

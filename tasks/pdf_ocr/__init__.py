@@ -7,9 +7,9 @@ class Inputs(typing.TypedDict):
     dpi: float
     preserve_images: bool
 class Outputs(typing.TypedDict):
-    output_path: str
-    pages_processed: float
-    confidence_score: float
+    output_path: typing.NotRequired[str]
+    pages_processed: typing.NotRequired[float]
+    confidence_score: typing.NotRequired[float]
 #endregion
 
 from oocana import Context

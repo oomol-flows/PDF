@@ -1,11 +1,11 @@
 inputs_def:
   - handle: pdf_path
-    description: Input encrypted PDF file
+    description: "%input-encrypted-pdf-file%"
     json_schema:
       type: string
       ui:widget: file
   - handle: output_path
-    description: Output decrypted PDF file
+    description: "%output-decrypted-pdf-file%"
     json_schema:
       type: string
       ui:widget: save
@@ -16,7 +16,7 @@ inputs_def:
             extensions:
               - pdf
   - handle: password
-    description: Password to decrypt the PDF
+    description: "%password-to-decrypt-the-pdf%"
     json_schema:
       type: string
 
@@ -37,9 +37,9 @@ executor:
     spawn: false
     entry: __init__.py
 
-title: PDF Decrypt
+title: "%pdf-decrypt%"
 icon: ":carbon:unlocked:"
-description: Remove password protection from encrypted PDF files
+description: "%remove-password-protection-from-encrypted-pdf-files%"
 
 ui:
   default_width: 450

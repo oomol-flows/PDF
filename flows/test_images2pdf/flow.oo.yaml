@@ -1,10 +1,11 @@
-title: Test Images to PDF
+title: "%test-images-to-pdf%"
 nodes:
   - node_id: images2pdf#1
     task: self::images2pdf
     inputs_from:
       - handle: image_paths
-        value: []
+        value:
+          []
       - handle: pdf_file_path
         value: "/oomol-driver/oomol-storage/test_data/test_from_images.pdf"
       - handle: title

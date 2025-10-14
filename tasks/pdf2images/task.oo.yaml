@@ -1,11 +1,11 @@
 inputs_def:
   - handle: pdf_path
-    description: Input PDF file to convert to images
+    description: "%input-pdf-file-to-convert-to-images%"
     json_schema:
       type: string
       ui:widget: file
   - handle: image_dir
-    description: Output directory for image files
+    description: "%output-directory-for-image-files%"
     json_schema:
       type: string
       ui:widget: dir
@@ -24,6 +24,6 @@ executor:
   options:
     spawn: false
     entry: __init__.py
-title: PDF to images
+title: "%pdf-to-images%"
 icon: ":carbon:image:"
-description: Convert PDF pages to individual image files
+description: "%convert-pdf-pages-to-individual-image-files%"

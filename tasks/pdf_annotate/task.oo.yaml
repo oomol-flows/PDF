@@ -1,11 +1,11 @@
 inputs_def:
   - handle: pdf_path
-    description: Input PDF file
+    description: "%input-pdf-file%"
     json_schema:
       type: string
       ui:widget: file
   - handle: output_path
-    description: Output annotated PDF file
+    description: "%output-annotated-pdf-file%"
     json_schema:
       type: string
       ui:widget: save
@@ -16,7 +16,7 @@ inputs_def:
             extensions:
               - pdf
   - handle: annotation_type
-    description: Type of annotation to add
+    description: "%type-of-annotation-to-add%"
     json_schema:
       type: string
       enum:
@@ -24,34 +24,34 @@ inputs_def:
         - "highlight"
         - "note"
         - "stamp"
-    value: "text"
+    value: text
   - handle: page_number
-    description: Page number to annotate (1-based)
+    description: "%page-number-to-annotate-1-based%"
     json_schema:
       type: number
       minimum: 1
     value: 1
   - handle: x_position
-    description: X position (0-1, 0=left, 1=right)
+    description: "%x-position-0-1-0-left-1-right%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
     value: 0.1
   - handle: y_position
-    description: Y position (0-1, 0=bottom, 1=top)
+    description: "%y-position-0-1-0-bottom-1-top%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
     value: 0.9
   - handle: annotation_text
-    description: Annotation text content
+    description: "%annotation-text-content%"
     json_schema:
       type: string
-    value: "Annotation"
+    value: Annotation
   - handle: color
-    description: Annotation color
+    description: "%annotation-color%"
     json_schema:
       type: string
       ui:widget: color
@@ -72,9 +72,9 @@ executor:
     spawn: false
     entry: __init__.py
 
-title: PDF Annotate
+title: "%pdf-annotate%"
 icon: ":carbon:text-annotation-toggle:"
-description: Add annotations and comments to PDF files
+description: "%add-annotations-and-comments-to-pdf-files%"
 
 ui:
   default_width: 450

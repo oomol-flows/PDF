@@ -1,4 +1,4 @@
-title: Test PDF2Meta
+title: "%test-pdf2meta%"
 nodes:
   - node_id: pdf2meta#1
     task: self::pdf2meta

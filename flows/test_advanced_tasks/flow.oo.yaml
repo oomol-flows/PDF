@@ -1,4 +1,4 @@
-title: Test Advanced PDF Tasks
+title: "%test-advanced-pdf-tasks%"
 nodes:
   # First create a test PDF using html_to_pdf
   - node_id: html_to_pdf#1
@@ -132,7 +132,7 @@ nodes:
       - handle: color
         value: "#808080"
   - node_id: pdf_merge#2
-    title: "PDF Merge #2"
+    title: "%pdf-merge-2%"
     inputs_from:
       - handle: pdf_files
         value:

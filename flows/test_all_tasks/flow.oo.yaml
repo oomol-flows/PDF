@@ -1,4 +1,4 @@
-title: Test All PDF Tasks
+title: "%test-all-pdf-tasks%"
 nodes:
   # Test html_to_pdf - providing all required parameters
   - node_id: html_to_pdf#1
