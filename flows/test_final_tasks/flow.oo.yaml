@@ -58,3 +58,28 @@ nodes:
       - handle: page_range
         value: all
     task: self::pdf_rotate
+
+  # Test PDF watermark with background layer
+  - node_id: pdf_watermark#1
+    task: self::pdf_watermark
+    inputs_from:
+      - handle: pdf_path
+        value: "/oomol-driver/oomol-storage/test_data/test_sample.pdf"
+      - handle: watermark_text
+        value: "CONFIDENTIAL"
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/test_data/watermarked_bg.pdf"
+      - handle: position_x
+        value: 0.5
+      - handle: position_y
+        value: 0.5
+      - handle: layer
+        value: "background"
+      - handle: opacity
+        value: 0.3
+      - handle: font_size
+        value: 48
+      - handle: rotation
+        value: 45
+      - handle: color
+        value: "#808080"
