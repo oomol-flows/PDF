@@ -1,31 +1,31 @@
 inputs_def:
   - handle: input_source
-    description: Input source type
+    description: "%input-source-type%"
     json_schema:
       type: string
       enum:
         - "html_file"
         - "html_string"
         - "url"
-    value: "html_file"
+    value: html_file
   - handle: html_file
-    description: HTML file to convert
+    description: "%html-file-to-convert%"
     json_schema:
       type: string
       ui:widget: file
     nullable: true
   - handle: html_string
-    description: HTML string to convert
+    description: "%html-string-to-convert%"
     json_schema:
       type: string
     nullable: true
   - handle: url
-    description: URL to convert to PDF
+    description: "%url-to-convert-to-pdf%"
     json_schema:
       type: string
     nullable: true
   - handle: output_path
-    description: Output PDF file
+    description: "%output-pdf-file%"
     json_schema:
       type: string
       ui:widget: save
@@ -36,7 +36,7 @@ inputs_def:
             extensions:
               - pdf
   - handle: page_size
-    description: Page size
+    description: "%page-size%"
     json_schema:
       type: string
       enum:
@@ -45,35 +45,35 @@ inputs_def:
         - "A5"
         - "Letter"
         - "Legal"
-    value: "A4"
+    value: A4
   - handle: orientation
-    description: Page orientation
+    description: "%page-orientation%"
     json_schema:
       type: string
       enum:
         - "portrait"
         - "landscape"
-    value: "portrait"
+    value: portrait
   - handle: margin_top
-    description: Top margin (mm)
+    description: "%top-margin-mm%"
     json_schema:
       type: number
       minimum: 0
     value: 20
   - handle: margin_bottom
-    description: Bottom margin (mm)
+    description: "%bottom-margin-mm%"
     json_schema:
       type: number
       minimum: 0
     value: 20
   - handle: margin_left
-    description: Left margin (mm)
+    description: "%left-margin-mm%"
     json_schema:
       type: number
       minimum: 0
     value: 20
   - handle: margin_right
-    description: Right margin (mm)
+    description: "%right-margin-mm%"
     json_schema:
       type: number
       minimum: 0
@@ -92,9 +92,9 @@ executor:
     spawn: false
     entry: __init__.py
 
-title: HTML to PDF
+title: "%html-to-pdf%"
 icon: ":carbon:html:"
-description: Convert HTML content or web pages to PDF format
+description: "%convert-html-content-or-web-pages-to-pdf-format%"
 
 ui:
   default_width: 450

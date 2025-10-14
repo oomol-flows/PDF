@@ -1,6 +1,6 @@
 inputs_def:
   - handle: pdf_files
-    description: PDF files to merge
+    description: "%pdf-files-to-merge%"
     json_schema:
       type: array
       items:
@@ -9,7 +9,7 @@ inputs_def:
     value:
       []
   - handle: output_path
-    description: Output merged PDF file
+    description: "%output-merged-pdf-file%"
     json_schema:
       type: string
       ui:widget: save
@@ -20,12 +20,12 @@ inputs_def:
             extensions:
               - pdf
   - handle: preserve_bookmarks
-    description: Preserve bookmarks from input files
+    description: "%preserve-bookmarks-from-input-files%"
     json_schema:
       type: boolean
     value: true
   - handle: add_page_numbers
-    description: Add page numbers to merged PDF
+    description: "%add-page-numbers-to-merged-pdf%"
     json_schema:
       type: boolean
     value: false
@@ -51,9 +51,9 @@ executor:
     spawn: false
     entry: __init__.py
 
-title: PDF Merge
+title: "%pdf-merge%"
 icon: ":carbon:merge:"
-description: Combine multiple PDF files into a single document
+description: "%combine-multiple-pdf-files-into-a-single-document%"
 
 ui:
   default_width: 450

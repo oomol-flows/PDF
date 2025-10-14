@@ -1,4 +1,4 @@
-title: "Test PDF Compression Flow"
+title: "%test-pdf-compression-flow%"
 nodes:
   - node_id: pdf_compress#1
     task: self::pdf_compress

@@ -1,4 +1,4 @@
-title: Test Basic PDF Tasks
+title: "%test-basic-pdf-tasks%"
 nodes:
   # Test pdf2meta
   - node_id: pdf2meta#1
