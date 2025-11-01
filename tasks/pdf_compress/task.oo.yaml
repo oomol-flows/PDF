@@ -25,7 +25,7 @@ inputs_def:
     nullable: false
 
   - group: "Compression Options"
-    collapsed: true
+    collapsed: false
   - handle: compression_level
     description: "%compression-level-1-9-higher-means-better-compression%"
     json_schema:
