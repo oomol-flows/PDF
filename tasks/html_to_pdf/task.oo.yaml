@@ -35,6 +35,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+  - group: "Page Setup"
+    collapsed: true
   - handle: page_size
     description: "%page-size%"
     json_schema:

@@ -3,9 +3,9 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
     output_format: typing.Literal["plain_text", "json", "csv"]
+    output_file: str | None
     page_range: str
     preserve_formatting: bool
-    output_file: str | None
 class Outputs(typing.TypedDict):
     extracted_text: typing.NotRequired[str]
     output_file: typing.NotRequired[str | None]

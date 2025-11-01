@@ -13,6 +13,14 @@ inputs_def:
         - "json"
         - "csv"
     value: plain_text
+  - handle: output_file
+    description: "%output-file-for-extracted-text%"
+    json_schema:
+      type: string
+      ui:widget: save
+    nullable: true
+  - group: "Extraction Options"
+    collapsed: true
   - handle: page_range
     description: "%pages-to-extract-e-g-1-3-5-or-all%"
     json_schema:
@@ -23,12 +31,6 @@ inputs_def:
     json_schema:
       type: boolean
     value: true
-  - handle: output_file
-    description: "%output-file-for-extracted-text%"
-    json_schema:
-      type: string
-      ui:widget: save
-    nullable: true
 
 outputs_def:
   - handle: extracted_text

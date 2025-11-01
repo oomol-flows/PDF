@@ -15,6 +15,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+  - group: "OCR Options"
+    collapsed: true
   - handle: language
     description: "%ocr-language%"
     json_schema:

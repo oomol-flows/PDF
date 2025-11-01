@@ -31,6 +31,13 @@ inputs_def:
       type: number
       minimum: 1
     value: 1
+  - handle: annotation_text
+    description: "%annotation-text-content%"
+    json_schema:
+      type: string
+    value: Annotation
+  - group: "Position & Style"
+    collapsed: true
   - handle: x_position
     description: "%x-position-0-1-0-left-1-right%"
     json_schema:
@@ -45,11 +52,6 @@ inputs_def:
       minimum: 0
       maximum: 1
     value: 0.9
-  - handle: annotation_text
-    description: "%annotation-text-content%"
-    json_schema:
-      type: string
-    value: Annotation
   - handle: color
     description: "%annotation-color%"
     json_schema:
