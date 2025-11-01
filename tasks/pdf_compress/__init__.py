@@ -3,9 +3,9 @@ import typing
 class Inputs(typing.TypedDict):
     input_pdf: str
     output_path: str
-    compression_level: int
-    optimize_images: bool
-    remove_metadata: bool
+    compression_level: int | None
+    optimize_images: bool | None
+    remove_metadata: bool | None
 class Outputs(typing.TypedDict):
     output_path: typing.NotRequired[str]
     original_size: typing.NotRequired[float]
@@ -22,15 +22,19 @@ from PIL import Image
 def main(params: Inputs, context: Context) -> Outputs:
     """
     Compress PDF files using lossless compression techniques
-    
+
     Args:
         params: Input parameters containing PDF file path and compression settings
         context: OOMOL context object
-        
+
     Returns:
         Dictionary with compression results and statistics
     """
     try:
+        # Set default values for nullable parameters
+        compression_level = params.get("compression_level", 6)  # Default: medium compression
+        optimize_images = params.get("optimize_images", True)   # Default: optimize images
+        remove_metadata = params.get("remove_metadata", True)   # Default: remove metadata
         if not os.path.exists(params["input_pdf"]):
             raise FileNotFoundError(f"Input PDF file not found: {params['input_pdf']}")
         
@@ -44,13 +48,13 @@ def main(params: Inputs, context: Context) -> Outputs:
         # Process each page
         for page in reader.pages:
             # Optimize images in the page if requested
-            if params["optimize_images"]:
-                page = optimize_page_images(page, params["compression_level"])
-            
+            if optimize_images:
+                page = optimize_page_images(page, compression_level)
+
             writer.add_page(page)
-        
+
         # Remove metadata if requested
-        if params["remove_metadata"]:
+        if remove_metadata:
             writer.add_metadata({})
         else:
             # Preserve original metadata

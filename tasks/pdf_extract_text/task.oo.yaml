@@ -18,6 +18,7 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: save
+    value:
     nullable: true
   - group: "Extraction Options"
     collapsed: true
