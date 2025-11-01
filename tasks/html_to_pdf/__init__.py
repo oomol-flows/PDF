@@ -2,16 +2,16 @@
 import typing
 class Inputs(typing.TypedDict):
     input_source: typing.Literal["html_file", "html_string", "url"]
+    output_path: str
     html_file: str | None
     html_string: str | None
     url: str | None
-    output_path: str
-    page_size: typing.Literal["A4", "A3", "A5", "Letter", "Legal"]
-    orientation: typing.Literal["portrait", "landscape"]
-    margin_top: float
-    margin_bottom: float
-    margin_left: float
-    margin_right: float
+    page_size: typing.Literal["A4", "A3", "A5", "Letter", "Legal"] | None
+    orientation: typing.Literal["portrait", "landscape"] | None
+    margin_top: float | None
+    margin_bottom: float | None
+    margin_left: float | None
+    margin_right: float | None
 class Outputs(typing.TypedDict):
     output_path: typing.NotRequired[str]
 #endregion
@@ -24,15 +24,22 @@ import requests
 def main(params: Inputs, context: Context) -> dict:
     """
     Convert HTML to PDF
-    
+
     Args:
         params: Input parameters containing HTML source and PDF settings
         context: OOMOL context object
-        
+
     Returns:
         Dictionary with output file path
     """
     try:
+        # Set default values for nullable parameters
+        page_size = params.get("page_size", "A4")           # Default: A4 paper
+        orientation = params.get("orientation", "portrait")  # Default: portrait orientation
+        margin_top = params.get("margin_top", 20)           # Default: 20mm top margin
+        margin_bottom = params.get("margin_bottom", 20)     # Default: 20mm bottom margin
+        margin_left = params.get("margin_left", 20)         # Default: 20mm left margin
+        margin_right = params.get("margin_right", 20)       # Default: 20mm right margin
         # Get HTML content based on input source
         if params["input_source"] == "html_file":
             if not params.get("html_file") or not os.path.exists(params["html_file"]):
@@ -66,21 +73,21 @@ def main(params: Inputs, context: Context) -> dict:
             "Letter": "8.5in 11in",
             "Legal": "8.5in 14in"
         }
-        
-        page_size_value = page_sizes.get(params["page_size"], "210mm 297mm")
-        
-        if params["orientation"] == "landscape":
+
+        page_size_value = page_sizes.get(page_size, "210mm 297mm")
+
+        if orientation == "landscape":
             # Swap width and height for landscape
             dimensions = page_size_value.split()
             page_size_value = f"{dimensions[1]} {dimensions[0]}"
-        
+
         css_style = f"""
         @page {{
             size: {page_size_value};
-            margin-top: {params['margin_top']}mm;
-            margin-bottom: {params['margin_bottom']}mm;
-            margin-left: {params['margin_left']}mm;
-            margin-right: {params['margin_right']}mm;
+            margin-top: {margin_top}mm;
+            margin-bottom: {margin_bottom}mm;
+            margin-left: {margin_left}mm;
+            margin-right: {margin_right}mm;
         }}
         """
         

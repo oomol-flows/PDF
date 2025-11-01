@@ -8,6 +8,17 @@ inputs_def:
         - "html_string"
         - "url"
     value: html_file
+  - handle: output_path
+    description: "%output-pdf-file%"
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        excludeAll: true
+        filters:
+          - name: PDF
+            extensions:
+              - pdf
   - handle: html_file
     description: "%html-file-to-convert%"
     json_schema:
@@ -24,17 +35,6 @@ inputs_def:
     json_schema:
       type: string
     nullable: true
-  - handle: output_path
-    description: "%output-pdf-file%"
-    json_schema:
-      type: string
-      ui:widget: save
-      ui:options:
-        excludeAll: true
-        filters:
-          - name: PDF
-            extensions:
-              - pdf
   - group: "Page Setup"
     collapsed: true
   - handle: page_size
@@ -47,7 +47,9 @@ inputs_def:
         - "A5"
         - "Letter"
         - "Legal"
-    value: A4
+      default: A4
+    value:
+    nullable: true
   - handle: orientation
     description: "%page-orientation%"
     json_schema:
@@ -55,32 +57,41 @@ inputs_def:
       enum:
         - "portrait"
         - "landscape"
-    value: portrait
+      default: portrait
+    value:
+    nullable: true
   - handle: margin_top
     description: "%top-margin-mm%"
     json_schema:
       type: number
       minimum: 0
-    value: 20
+      default: 20
+    value:
+    nullable: true
   - handle: margin_bottom
     description: "%bottom-margin-mm%"
     json_schema:
       type: number
       minimum: 0
-    value: 20
+      default: 20
+    value:
+    nullable: true
   - handle: margin_left
     description: "%left-margin-mm%"
     json_schema:
       type: number
       minimum: 0
-    value: 20
+      default: 20
+    value:
+    nullable: true
   - handle: margin_right
     description: "%right-margin-mm%"
     json_schema:
       type: number
       minimum: 0
-    value: 20
-
+      default: 20
+    value:
+    nullable: true
 outputs_def:
   - handle: output_path
     description: Generated PDF file path
