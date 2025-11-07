@@ -20,7 +20,7 @@ inputs_def:
         - "equal_parts"
     value: single_pages
   - group: "Split Options"
-    collapsed: false
+    collapsed: true
   - handle: page_ranges
     description: "%page-ranges-e-g-1-3-5-7-10-only-for-page_ranges-mode%"
     json_schema:
