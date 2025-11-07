@@ -13,7 +13,8 @@
       "Bash(apt-get update:*)",
       "Bash(apt-get install:*)",
       "Bash(touch:*)",
-      "mcp__oomol__listRunningTasks",
+      "mcp__oomol__refreshEditors",
+      "mcp__oomol__getTaskResult",
       "Read(//oomol-driver/oomol-storage/**)"
     ],
     "deny": [],

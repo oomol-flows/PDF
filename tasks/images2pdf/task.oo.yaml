@@ -21,6 +21,8 @@ inputs_def:
               - pdf
     value:
     nullable: true
+  - group: "Document Metadata"
+    collapsed: true
   - handle: title
     description: "%pdf-document-title%"
     json_schema:

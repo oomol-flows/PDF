@@ -8,7 +8,7 @@ inputs_def:
     description: "%watermark-text-leave-empty-for-image-watermark%"
     json_schema:
       type: string
-    value: ""
+    value:
     nullable: true
   - handle: watermark_image
     description: "%watermark-image-file%"
@@ -27,6 +27,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+  - group: "Position & Layer"
+    collapsed: true
   - handle: position_x
     description: "%watermark-x-position-0-1-0-left-1-right%"
     json_schema:
@@ -49,6 +51,8 @@ inputs_def:
         - background
         - foreground
     value: background
+  - group: "Styling Options"
+    collapsed: true
   - handle: opacity
     description: "%watermark-opacity-0-1-0-transparent-1-opaque%"
     json_schema:

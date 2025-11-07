@@ -24,6 +24,8 @@ inputs_def:
         excludeAll: true
     nullable: false
 
+  - group: "Compression Options"
+    collapsed: false
   - handle: compression_level
     description: "%compression-level-1-9-higher-means-better-compression%"
     json_schema:
@@ -31,21 +33,27 @@ inputs_def:
       minimum: 1
       maximum: 9
       default: 6
-    nullable: false
+    nullable: true
+    value:
+
 
   - handle: optimize_images
     description: "%optimize-embedded-images%"
     json_schema:
       type: boolean
       default: true
-    nullable: false
+    nullable: true
+    value:
+
 
   - handle: remove_metadata
     description: "%remove-unnecessary-metadata%"
     json_schema:
       type: boolean
       default: true
-    nullable: false
+    nullable: true
+    value:
+
 
 outputs_def:
   - handle: output_path

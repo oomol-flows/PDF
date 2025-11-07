@@ -5,9 +5,9 @@ class Inputs(typing.TypedDict):
     output_path: str
     annotation_type: typing.Literal["text", "highlight", "note", "stamp"]
     page_number: float
+    annotation_text: str
     x_position: float
     y_position: float
-    annotation_text: str
     color: str
 class Outputs(typing.TypedDict):
     output_path: typing.NotRequired[str]

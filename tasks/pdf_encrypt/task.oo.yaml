@@ -24,6 +24,8 @@ inputs_def:
     json_schema:
       type: string
     nullable: true
+  - group: "Permissions"
+    collapsed: false
   - handle: allow_printing
     description: "%allow-printing%"
     json_schema:

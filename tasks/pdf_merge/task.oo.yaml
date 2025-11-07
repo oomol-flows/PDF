@@ -19,6 +19,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+  - group: "Merge Options"
+    collapsed: true
   - handle: preserve_bookmarks
     description: "%preserve-bookmarks-from-input-files%"
     json_schema:
