@@ -3,8 +3,8 @@ import typing
 class Inputs(typing.TypedDict):
     pdf_files: list[str]
     output_path: str
-    preserve_bookmarks: bool
-    add_page_numbers: bool
+    preserve_bookmarks: bool | None
+    add_page_numbers: bool | None
 class Outputs(typing.TypedDict):
     output_path: typing.NotRequired[str]
     total_pages: typing.NotRequired[float]
@@ -12,7 +12,7 @@ class Outputs(typing.TypedDict):
 #endregion
 
 from oocana import Context
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 import io
@@ -21,41 +21,45 @@ import os
 def main(params: Inputs, context: Context) -> dict:
     """
     Merge multiple PDF files into a single document
-    
+
     Args:
         params: Input parameters containing PDF files and merge settings
         context: OOMOL context object
-        
+
     Returns:
         Dictionary with output file path and merge statistics
     """
     try:
         if not params["pdf_files"]:
             raise ValueError("No PDF files provided for merging")
-        
+
+        # Apply default values for nullable parameters
+        preserve_bookmarks = params.get("preserve_bookmarks") if params.get("preserve_bookmarks") is not None else True
+        add_page_numbers = params.get("add_page_numbers") if params.get("add_page_numbers") is not None else False
+
         # Initialize PDF writer
         writer = PdfWriter()
         total_pages = 0
-        
+
         # Process each input PDF
         for file_index, pdf_path in enumerate(params["pdf_files"]):
             if not os.path.exists(pdf_path):
                 continue
-                
+
             reader = PdfReader(pdf_path)
             file_pages = len(reader.pages)
-            
+
             # Add all pages from current PDF
             for page_index, page in enumerate(reader.pages):
                 # Add page numbers if requested
-                if params["add_page_numbers"]:
+                if add_page_numbers:
                     current_page_num = total_pages + page_index + 1
                     page = add_page_number(page, current_page_num)
-                
+
                 writer.add_page(page)
-            
+
             # Preserve bookmarks if requested
-            if params["preserve_bookmarks"] and reader.outline:
+            if preserve_bookmarks and reader.outline:
                 try:
                     # Add bookmarks with offset
                     for bookmark in reader.outline:

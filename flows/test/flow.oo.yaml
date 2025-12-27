@@ -1,0 +1,67 @@
+nodes:
+  - node_id: pdf2images#1
+    title: "%pdf-1%"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/015_04.pdf
+      - handle: image_dir
+        value: null
+    task: self::pdf2images
+  - node_id: pdf_extract_text#1
+    title: "%pdf-12%"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/015_04.pdf
+      - handle: output_format
+        value: plain_text
+      - handle: output_file
+        value: null
+      - handle: page_range
+        value: null
+      - handle: preserve_formatting
+        value: null
+    task: self::pdf_extract_text
+  - node_id: pdf2meta#1
+    title: "%pdf-13%"
+    inputs_from:
+      - handle: pdf
+        value: /oomol-driver/desktop/015_04.pdf
+    task: self::pdf2meta
+  - node_id: pdf_rotate#1
+    title: "%pdf-14%"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/2512.13084v1.pdf
+      - handle: output_path
+        value:
+      - handle: rotation_angle
+        value: "90"
+      - handle: page_range
+        value: null
+    task: self::pdf_rotate
+  - node_id: pdf_watermark#1
+    title: "%pdf-15%"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/2512.13084v1.pdf
+      - handle: watermark_text
+        value: " 伍双"
+      - handle: watermark_image
+        value: null
+      - handle: output_path
+        value: null
+      - handle: position_x
+        value: null
+      - handle: position_y
+        value: null
+      - handle: layer
+        value: null
+      - handle: opacity
+        value: null
+      - handle: font_size
+        value: null
+      - handle: rotation
+        value: null
+      - handle: color
+        value: null
+    task: self::pdf_watermark

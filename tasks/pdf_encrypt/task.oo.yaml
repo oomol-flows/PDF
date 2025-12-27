@@ -23,28 +23,35 @@ inputs_def:
     description: "%owner-password-for-permissions%"
     json_schema:
       type: string
+    value: null
     nullable: true
   - group: "Permissions"
-    collapsed: false
+    collapsed: true
   - handle: allow_printing
     description: "%allow-printing%"
     json_schema:
       type: boolean
-    value: true
+      default: true
+    value: null
+    nullable: true
   - handle: allow_copying
     description: "%allow-copying-text%"
     json_schema:
       type: boolean
-    value: true
+      default: true
+    value: null
+    nullable: true
   - handle: allow_modification
     description: "%allow-document-modification%"
     json_schema:
       type: boolean
-    value: false
+      default: false
+    value: null
+    nullable: true
 
 outputs_def:
   - handle: output_path
-    description: Encrypted PDF file path
+    description: "%encrypted-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file

@@ -15,6 +15,13 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+  - handle: annotation_text
+    description: "%annotation-text-content%"
+    json_schema:
+      type: string
+    value: Annotation
+  - group: "Annotation Options"
+    collapsed: true
   - handle: annotation_type
     description: "%type-of-annotation-to-add%"
     json_schema:
@@ -25,17 +32,15 @@ inputs_def:
         - "note"
         - "stamp"
     value: text
+    nullable: true
   - handle: page_number
     description: "%page-number-to-annotate-1-based%"
     json_schema:
       type: number
       minimum: 1
-    value: 1
-  - handle: annotation_text
-    description: "%annotation-text-content%"
-    json_schema:
-      type: string
-    value: Annotation
+      default: 1
+    value:
+    nullable: true
   - group: "Position & Style"
     collapsed: true
   - handle: x_position
@@ -44,14 +49,18 @@ inputs_def:
       type: number
       minimum: 0
       maximum: 1
-    value: 0.1
+      default: 0.1
+    value:
+    nullable: true
   - handle: y_position
     description: "%y-position-0-1-0-bottom-1-top%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
-    value: 0.9
+      default: 0.9
+    value:
+    nullable: true
   - handle: color
     description: "%annotation-color%"
     json_schema:
@@ -59,11 +68,13 @@ inputs_def:
       ui:widget: color
       ui:options:
         colorType: HEX
-    value: "#FFFF00"
+      default: "#7D7FE9"
+    value:
+    nullable: true
 
 outputs_def:
   - handle: output_path
-    description: Annotated PDF file path
+    description: "%annotated-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file

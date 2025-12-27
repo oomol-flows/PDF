@@ -22,16 +22,16 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: PDF file with deleted pages
+    description: "%pdf-file-with-deleted-pages%"
     json_schema:
       type: string
       ui:widget: file
   - handle: pages_deleted
-    description: Number of pages deleted
+    description: "%number-of-pages-deleted%"
     json_schema:
       type: number
   - handle: remaining_pages
-    description: Number of remaining pages
+    description: "%number-of-remaining-pages%"
     json_schema:
       type: number
 

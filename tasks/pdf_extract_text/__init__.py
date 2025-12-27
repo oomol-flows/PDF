@@ -2,91 +2,92 @@
 import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
-    output_format: typing.Literal["plain_text", "json", "csv"]
     output_file: str | None
-    page_range: str
-    preserve_formatting: bool
+    page_range: str | None
+    preserve_formatting: bool | None
 class Outputs(typing.TypedDict):
-    extracted_text: typing.NotRequired[str]
-    output_file: typing.NotRequired[str | None]
+    markdown_file: typing.NotRequired[str]
     pages_processed: typing.NotRequired[float]
 #endregion
 
 from oocana import Context
 import pdfplumber
-import json
-import csv
-import io
+import os
+import tempfile
 
 def main(params: Inputs, context: Context) -> dict:
     """
-    Extract text from PDF file
-    
+    Extract text from PDF file and save as markdown
+
     Args:
         params: Input parameters containing PDF path and extraction settings
         context: OOMOL context object
-        
+
     Returns:
-        Dictionary with extracted text and processing statistics
+        Dictionary with markdown file path and processing statistics
     """
     try:
+        # Apply default values for nullable parameters
+        page_range = params.get("page_range") or "all"
+        preserve_formatting = params.get("preserve_formatting") if params.get("preserve_formatting") is not None else True
+
         extracted_data = []
         pages_processed = 0
-        
+
         with pdfplumber.open(params["pdf_path"]) as pdf:
             total_pages = len(pdf.pages)
-            
+
             # Parse page range
-            if params["page_range"].strip().lower() == "all":
+            if page_range.strip().lower() == "all":
                 page_indices = range(total_pages)
             else:
-                page_indices = parse_page_range(params["page_range"], total_pages)
-            
+                page_indices = parse_page_range(page_range, total_pages)
+
             # Extract text from specified pages
             for page_index in page_indices:
                 if 0 <= page_index < total_pages:
                     page = pdf.pages[page_index]
-                    
-                    if params["preserve_formatting"]:
+
+                    if preserve_formatting:
                         # Extract with layout preservation
                         text = page.extract_text(layout=True)
                     else:
                         # Simple text extraction
                         text = page.extract_text()
-                    
+
                     if text:
                         extracted_data.append({
                             "page": page_index + 1,
                             "text": text.strip()
                         })
-                    
+
                     pages_processed += 1
-        
-        # Format output based on requested format
-        if params["output_format"] == "json":
-            output_text = json.dumps(extracted_data, indent=2, ensure_ascii=False)
-        elif params["output_format"] == "csv":
-            output = io.StringIO()
-            writer = csv.DictWriter(output, fieldnames=["page", "text"])
-            writer.writeheader()
-            writer.writerows(extracted_data)
-            output_text = output.getvalue()
-        else:  # plain_text
-            output_text = "\n\n".join([item["text"] for item in extracted_data])
-        
-        # Save to file if specified
-        output_file_path = None
+
+        # Generate markdown content
+        markdown_lines = []
+        for item in extracted_data:
+            markdown_lines.append(f"## Page {item['page']}\n")
+            markdown_lines.append(f"{item['text']}\n")
+
+        markdown_content = "\n".join(markdown_lines)
+
+        # Determine output file path
         if params.get("output_file"):
-            with open(params["output_file"], 'w', encoding='utf-8') as f:
-                f.write(output_text)
-            output_file_path = params["output_file"]
-        
+            output_path = params["output_file"]
+        else:
+            # Generate temp file with .md extension
+            pdf_basename = os.path.splitext(os.path.basename(params["pdf_path"]))[0]
+            output_path = os.path.join(tempfile.gettempdir(), f"{pdf_basename}_extracted.md")
+
+        # Save to markdown file
+        with open(output_path, 'w', encoding='utf-8') as f:
+            f.write(markdown_content)
+
         return {
-            "extracted_text": output_text,
-            "output_file": output_file_path,
+            "markdown_file": output_path,
             "pages_processed": pages_processed
         }
-        
+
     except Exception as e:
         raise Exception(f"Error extracting text from PDF: {str(e)}")
 

@@ -32,22 +32,27 @@ inputs_def:
     json_schema:
       type: number
       minimum: 1
-    value: 10
+      default: 10
+    value:
+    nullable: true
   - handle: filename_prefix
     description: "%prefix-for-output-filenames%"
     json_schema:
       type: string
-    value: page
+      default: page
+    value:
+    nullable: true
 
 outputs_def:
   - handle: output_files
-    description: List of created PDF files
+    description: "%list-of-created-pdf-files%"
     json_schema:
       type: array
       items:
         type: string
+        ui:widget: file
   - handle: files_created
-    description: Number of files created
+    description: "%number-of-files-created%"
     json_schema:
       type: number
 

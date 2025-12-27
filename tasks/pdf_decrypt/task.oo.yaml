@@ -22,12 +22,12 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Decrypted PDF file path
+    description: "%decrypted-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file
   - handle: was_encrypted
-    description: Whether the PDF was encrypted
+    description: "%whether-the-pdf-was-encrypted%"
     json_schema:
       type: boolean
 

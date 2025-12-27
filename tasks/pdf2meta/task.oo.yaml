@@ -10,11 +10,11 @@ inputs_def:
       ui:widget: file
 outputs_def:
   - handle: name
-    description: PDF document name
+    description: "%pdf-document-name%"
     json_schema:
       type: string
   - handle: meta
-    description: PDF metadata information
+    description: "%pdf-metadata-information%"
     json_schema:
       type: object
       additionalProperties:

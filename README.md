@@ -4,7 +4,7 @@ A comprehensive collection of PDF processing blocks for the OOMOL platform, prov
 
 ## 🚀 Overview
 
-This toolkit transforms your OOMOL workspace into a complete PDF processing powerhouse. With 15+ specialized blocks, you can handle everything from basic operations like merging and splitting to advanced features like OCR, form filling, and security management.
+This toolkit transforms your OOMOL workspace into a complete PDF processing powerhouse. With 12 specialized blocks, you can handle everything from basic operations like merging and splitting to advanced features like watermarking, encryption, and text extraction.
 
 ## 📦 Available Blocks
 
@@ -38,6 +38,27 @@ Divide large PDFs into smaller, manageable files with flexible splitting options
 - **Bookmark-Based**: Automatically split at bookmark boundaries
 - **Batch Output**: Generate multiple files with organized naming conventions
 
+#### **PDF to Images** (`pdf2images`)
+Convert PDF pages to high-quality image files.
+- **Multiple Formats**: PNG, JPEG, and other image formats
+- **DPI Control**: Adjust resolution for different use cases
+- **Page Selection**: Convert specific pages or entire documents
+- **Batch Processing**: Handle multiple PDFs simultaneously
+
+#### **Images to PDF** (`images2pdf`)
+Combine multiple images into a single PDF document.
+- **Multi-Format Support**: JPEG, PNG, and other image formats
+- **Layout Control**: Configure page size and orientation
+- **Batch Conversion**: Process entire image collections
+- **Quality Preservation**: Maintain image quality during conversion
+
+#### **PDF Metadata Extraction** (`pdf2meta`)
+Extract document metadata and properties.
+- **Comprehensive Info**: Title, author, subject, creator, and more
+- **Custom Properties**: Access custom metadata fields
+- **Batch Processing**: Extract metadata from multiple documents
+- **JSON Output**: Structured metadata export
+
 ### 🔒 **Security & Access Control**
 
 #### **PDF Encryption** (`pdf_encrypt`)
@@ -70,30 +91,11 @@ Extract and export text content in multiple formats for further processing.
 - **Selective Extraction**: Process specific pages or page ranges
 - **Batch Export**: Extract text from multiple documents simultaneously
 
-#### **PDF Page Management** (`pdf_delete_pages`, `pdf_insert_pages`)
-Fine-tune document structure with advanced page manipulation tools.
+#### **PDF Page Deletion** (`pdf_delete_pages`)
+Fine-tune document structure by removing unwanted pages.
 - **Page Deletion**: Remove unwanted pages with range specification
-- **Page Insertion**: Add content from other PDFs at specific positions  
 - **Batch Operations**: Process multiple documents with consistent rules
 - **Structure Preservation**: Maintain document integrity during modifications
-
-### 🤖 **Advanced AI-Powered Features**
-
-#### **PDF OCR** (`pdf_ocr`)
-Transform scanned documents into searchable, editable text with advanced OCR technology.
-- **Multi-Language Support**: Process documents in English, Chinese, Japanese, Korean, and European languages
-- **Quality Control**: Adjustable DPI settings (150-600) for optimal recognition
-- **Confidence Scoring**: Accuracy metrics for quality assurance
-- **Searchable Output**: Generate fully searchable PDFs with invisible text layers
-
-### 📝 **Interactive Documents**
-
-#### **PDF Form Filling** (`pdf_fill_forms`)
-Automate form completion with programmatic field population.
-- **Field Detection**: Automatic identification of fillable form fields
-- **Data Mapping**: Structured input for consistent form completion
-- **Batch Processing**: Fill multiple forms with template data
-- **Validation**: Ensure field compatibility and data integrity
 
 #### **PDF Annotation** (`pdf_annotate`)
 Enhance documents with professional annotations and markup tools.
@@ -102,33 +104,14 @@ Enhance documents with professional annotations and markup tools.
 - **Color Customization**: Full color palette for visual organization
 - **Collaborative Features**: Professional markup for document review
 
-### 🌐 **Format Conversion**
-
-#### **HTML to PDF** (`html_to_pdf`)
-Convert web content and HTML documents to professional PDF format.
-- **Multiple Sources**: HTML files, raw strings, or live web URLs
-- **Layout Control**: Custom page sizes, orientation, and margins
-- **CSS Support**: Full styling preservation during conversion
-- **Print Optimization**: Professional output suitable for printing and archiving
-
-### 🔖 **Document Organization**
-
-#### **PDF Bookmark Management** (`pdf_bookmarks`)
-Create and manage document navigation with professional bookmark systems.
-- **Hierarchical Structure**: Support for nested bookmark organization  
-- **Batch Import/Export**: Manage bookmarks across multiple documents
-- **Custom Naming**: Flexible bookmark titles and organization
-- **Navigation Enhancement**: Improve document usability and accessibility
-
 ## 🛠️ Technical Specifications
 
 ### **Dependencies**
-- **PyPDF/PyPDF2**: Core PDF manipulation engine
+- **PyPDF2**: Core PDF manipulation engine
+- **Pillow (PIL)**: Image processing for watermarks and conversions
 - **Reportlab**: Advanced PDF generation and overlay capabilities
 - **PDFplumber**: Enhanced text extraction with layout preservation
-- **Pytesseract**: Industrial-grade OCR processing
-- **WeasyPrint**: Professional HTML to PDF conversion
-- **Wand/ImageMagick**: Advanced image processing capabilities
+- **pdf2image**: PDF to image conversion (requires poppler-utils)
 
 ### **Performance Features**
 - **Memory Efficient**: Optimized for large file processing
@@ -155,18 +138,18 @@ Create and manage document navigation with professional bookmark systems.
 - **Student Submissions**: Process assignments, add feedback annotations, and manage document collections
 
 ### **Digital Publishing**
-- **Content Creation**: Convert web articles, add professional layouts, and optimize for distribution
-- **Archive Management**: Digitize paper documents with OCR, organize with bookmarks, and secure sensitive materials
+- **Content Creation**: Merge documents, add professional layouts, and optimize for distribution
+- **Archive Management**: Organize with metadata extraction and secure sensitive materials
 - **Portfolio Development**: Merge creative works, add watermarks, and prepare professional presentations
 
 ### **Legal and Compliance**
-- **Document Redaction**: Remove sensitive information while maintaining document integrity
+- **Document Redaction**: Remove pages while maintaining document integrity
 - **Evidence Management**: Secure documents with encryption, add annotations for case notes
-- **Regulatory Submission**: Merge compliance documents, add required metadata, and ensure proper formatting
+- **Regulatory Submission**: Merge compliance documents and ensure proper formatting
 
 ## 🚦 Getting Started
 
-1. **Install Dependencies**: Ensure all required Python packages are installed via `pip install` or `poetry install`
+1. **Install Dependencies**: Run `poetry install --no-root` to install all required Python packages
 2. **Import Blocks**: Add desired PDF processing blocks to your OOMOL workflow
 3. **Configure Settings**: Customize block parameters for your specific use case
 4. **Process Documents**: Execute workflows and monitor processing results
@@ -176,9 +159,41 @@ Create and manage document navigation with professional bookmark systems.
 
 Combine multiple blocks to create powerful document processing pipelines:
 
-- **Document Digitization**: OCR → Text Extraction → Bookmark Creation
-- **Security Pipeline**: Encryption → Watermarking → Compression  
-- **Publishing Workflow**: HTML Conversion → Merging → Page Numbering → Final Compression
-- **Archive Processing**: Splitting → Individual OCR → Metadata Extraction → Secure Storage
+- **Document Conversion**: Images to PDF → Merging → Watermarking
+- **Security Pipeline**: Encryption → Watermarking → Metadata Extraction
+- **Content Extraction**: PDF to Images → Text Extraction → Data Processing
+- **Archive Processing**: Splitting → Individual Processing → Secure Storage
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+### Third-Party Licenses
+
+This project uses the following open-source libraries:
+
+- **PyPDF2** (BSD-3-Clause License) - PDF manipulation
+- **Pillow** (MIT-CMU License) - Image processing
+- **Reportlab** (BSD License) - PDF generation
+- **PDFplumber** (MIT License) - Text extraction
+- **pdf2image** (MIT License) - PDF to image conversion
+
+All dependencies are used in compliance with their respective licenses.
+
+## 🤝 Contributing
+
+Contributions are welcome! This is an open-source project and we encourage:
+
+- Bug reports and feature requests via GitHub Issues
+- Pull requests for improvements and new features
+- Documentation enhancements
+- Use cases and workflow examples
+
+## 📧 Contact
+
+**Author**: TaoZeyu
+**Email**: i@taozeyu.com
+
+---
 
 Transform your document processing capabilities with this comprehensive PDF toolkit designed for professional workflows and seamless OOMOL platform integration.

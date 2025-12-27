@@ -13,7 +13,7 @@ inputs_def:
     nullable: true
 outputs_def:
   - handle: image_dir
-    description: Directory containing converted image files
+    description: "%directory-containing-converted-image-files%"
     json_schema:
       type: string
       ui:widget: dir

@@ -15,6 +15,7 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: file
+    value:
     nullable: true
   - handle: output_path
     description: "%output-pdf-file-path2%"
@@ -27,6 +28,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+    value:
+    nullable: true
   - group: "Position & Layer"
     collapsed: true
   - handle: position_x
@@ -35,14 +38,18 @@ inputs_def:
       type: number
       minimum: 0
       maximum: 1
-    value: 0.5
+      default: 0.5
+    value: null
+    nullable: true
   - handle: position_y
     description: "%watermark-y-position-0-1-0-bottom-1-top%"
     json_schema:
       type: number
       minimum: 0
       maximum: 1
-    value: 0.5
+      default: 0.5
+    value: null
+    nullable: true
   - handle: layer
     description: "%watermark-layer-background-or-foreground%"
     json_schema:
@@ -50,7 +57,9 @@ inputs_def:
       enum:
         - background
         - foreground
-    value: background
+      default: background
+    value: null
+    nullable: true
   - group: "Styling Options"
     collapsed: true
   - handle: opacity
@@ -59,21 +68,27 @@ inputs_def:
       type: number
       minimum: 0
       maximum: 1
-    value: 0.15
+      default: 0.15
+    value: null
+    nullable: true
   - handle: font_size
     description: "%font-size-for-text-watermark%"
     json_schema:
       type: number
       minimum: 8
       maximum: 72
-    value: 36
+      default: 36
+    value: null
+    nullable: true
   - handle: rotation
     description: "%watermark-rotation-angle-degrees%"
     json_schema:
       type: number
       minimum: -180
       maximum: 180
-    value: 45
+      default: 45
+    value: null
+    nullable: true
   - handle: color
     description: "%text-watermark-color%"
     json_schema:
@@ -81,11 +96,13 @@ inputs_def:
       ui:widget: color
       ui:options:
         colorType: HEX
-    value: "#B8B8B8"
+      default: "#B8B8B8"
+    value: null
+    nullable: true
 
 outputs_def:
   - handle: output_path
-    description: Watermarked PDF file path
+    description: "%watermarked-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file
