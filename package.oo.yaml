@@ -8,7 +8,7 @@ scripts:
 dependencies:
   {}
 name: pdf
-version: 0.1.6
+version: 0.1.7
 displayName: "%display-name%"
 description: "%key%"
 repository: https://github.com/oomol-flows/PDF
