@@ -102,7 +102,7 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Watermarked PDF file path
+    description: "%watermarked-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file

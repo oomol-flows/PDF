@@ -41,12 +41,12 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Rotated PDF file path
+    description: "%rotated-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file
   - handle: pages_rotated
-    description: Number of pages rotated
+    description: "%number-of-pages-rotated%"
     json_schema:
       type: number
 

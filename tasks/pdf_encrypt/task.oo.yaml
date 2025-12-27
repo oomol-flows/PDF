@@ -51,7 +51,7 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Encrypted PDF file path
+    description: "%encrypted-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file

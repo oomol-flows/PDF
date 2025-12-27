@@ -1,6 +1,6 @@
 nodes:
   - node_id: pdf2images#1
-    title: "PDF 转图片 #1"
+    title: "%pdf-1%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/015_04.pdf
@@ -8,7 +8,7 @@ nodes:
         value: null
     task: self::pdf2images
   - node_id: pdf_extract_text#1
-    title: "PDF 文本提取 #1"
+    title: "%pdf-12%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/015_04.pdf
@@ -22,13 +22,13 @@ nodes:
         value: null
     task: self::pdf_extract_text
   - node_id: pdf2meta#1
-    title: "PDF 转为元数据 #1"
+    title: "%pdf-13%"
     inputs_from:
       - handle: pdf
         value: /oomol-driver/desktop/015_04.pdf
     task: self::pdf2meta
   - node_id: pdf_rotate#1
-    title: "PDF 旋转 #1"
+    title: "%pdf-14%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/2512.13084v1.pdf
@@ -40,7 +40,7 @@ nodes:
         value: null
     task: self::pdf_rotate
   - node_id: pdf_watermark#1
-    title: "PDF 水印 #1"
+    title: "%pdf-15%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/2512.13084v1.pdf

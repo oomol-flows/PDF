@@ -37,7 +37,7 @@ inputs_def:
     nullable: true
 outputs_def:
   - handle: pdf_file_path
-    description: Generated PDF file path
+    description: "%generated-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: save

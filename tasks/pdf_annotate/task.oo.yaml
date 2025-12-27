@@ -74,7 +74,7 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Annotated PDF file path
+    description: "%annotated-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file

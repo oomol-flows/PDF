@@ -36,12 +36,12 @@ inputs_def:
 
 outputs_def:
   - handle: markdown_file
-    description: Path to the generated markdown file
+    description: "%path-to-the-generated-markdown-file%"
     json_schema:
       type: string
       ui:widget: file
   - handle: pages_processed
-    description: Number of pages processed
+    description: "%number-of-pages-processed%"
     json_schema:
       type: number
 
@@ -53,9 +53,7 @@ executor:
 
 title: "%pdf-text-extract%"
 icon: ":carbon:pointer-text:"
-description: "Extract selectable text content from PDF files. Only extracts text
-  objects (selectable/copyable text). Cannot extract text from images or scanned
-  documents - OCR functionality not included."
+description: "%extract-selectable-text-content-from-pdf-files-only-extracts-tex%"
 
 ui:
   default_width: 450

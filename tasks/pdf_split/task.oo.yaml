@@ -45,14 +45,14 @@ inputs_def:
 
 outputs_def:
   - handle: output_files
-    description: List of created PDF files
+    description: "%list-of-created-pdf-files%"
     json_schema:
       type: array
       items:
         type: string
         ui:widget: file
   - handle: files_created
-    description: Number of files created
+    description: "%number-of-files-created%"
     json_schema:
       type: number
 

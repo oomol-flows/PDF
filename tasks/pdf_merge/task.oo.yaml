@@ -38,16 +38,16 @@ inputs_def:
 
 outputs_def:
   - handle: output_path
-    description: Merged PDF file path
+    description: "%merged-pdf-file-path%"
     json_schema:
       type: string
       ui:widget: file
   - handle: total_pages
-    description: Total pages in merged PDF
+    description: "%total-pages-in-merged-pdf%"
     json_schema:
       type: number
   - handle: file_count
-    description: Number of files merged
+    description: "%number-of-files-merged%"
     json_schema:
       type: number
 
