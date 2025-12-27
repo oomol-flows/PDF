@@ -51,3 +51,77 @@ nodes:
       - handle: author
         value: null
     task: self::images2pdf
+  - node_id: pdf_merge#1
+    title: "PDF 合并 #1"
+    inputs_from:
+      - handle: pdf_files
+        value:
+          - /oomol-driver/desktop/2512.13084v1_part1.pdf
+          - /oomol-driver/desktop/2512.13084v1_part2.pdf
+      - handle: output_path
+        value: /oomol-driver/desktop/6yue/6yue.pdf
+      - handle: preserve_bookmarks
+        value: null
+      - handle: add_page_numbers
+        value: null
+    task: self::pdf_merge
+  - node_id: pdf_encrypt#1
+    title: "PDF 加密 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/《自私的美德》安·兰德.清晰扫描版.pdf
+      - handle: output_path
+        value: /oomol-driver/desktop/6yue/6yue.pdf
+      - handle: user_password
+        value: "23123"
+      - handle: owner_password
+        value: null
+      - handle: allow_printing
+        value: null
+      - handle: allow_copying
+        value: null
+      - handle: allow_modification
+        value: null
+    task: self::pdf_encrypt
+  - node_id: pdf_delete_pages#1
+    title: "PDF 删除页面 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/2512.13084v1_part1.pdf
+      - handle: output_path
+        value: /oomol-driver/desktop/dasd.pdf
+      - handle: pages_to_delete
+        value: "1"
+    task: self::pdf_delete_pages
+  - node_id: pdf_decrypt#1
+    title: "PDF 解密 #1"
+    inputs_from:
+      - handle: pdf_path
+        from_node:
+          - node_id: pdf_encrypt#1
+            output_handle: output_path
+      - handle: output_path
+        value: /oomol-driver/desktop/das.pdf
+      - handle: password
+        value: "23123"
+    task: self::pdf_decrypt
+  - node_id: pdf_annotate#1
+    title: "PDF 注释 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/《自私的美德》安·兰德.清晰扫描版.pdf
+      - handle: output_path
+        value: /oomol-driver/desktop/ss.pdf
+      - handle: annotation_text
+        value: Annotation
+      - handle: annotation_type
+        value: text
+      - handle: page_number
+        value: null
+      - handle: x_position
+        value: null
+      - handle: y_position
+        value: null
+      - handle: color
+        value: null
+    task: self::pdf_annotate

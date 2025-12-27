@@ -40,6 +40,38 @@
           }
         }
       }
+    },
+    "pdf_merge#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": -480.79002282269596,
+          "y": 3823.6205790496
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Merge Options": true
+          }
+        }
+      }
+    },
+    "pdf_encrypt#1": {
+      "contentWidth": 617.610018733854,
+      "rfNode": {
+        "position": {
+          "x": -450.29086008268894,
+          "y": 4564.710058076633
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Permissions": true
+          }
+        }
+      }
     }
   }
 }
