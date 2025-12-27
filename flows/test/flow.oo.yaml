@@ -7,55 +7,61 @@ nodes:
       - handle: image_dir
         value: null
     task: self::pdf2images
-  - node_id: html_to_pdf#1
-    title: "HTML 转 PDF #1"
+  - node_id: pdf_extract_text#1
+    title: "PDF 文本提取 #1"
     inputs_from:
-      - handle: input_source
-        value: html_file
-      - handle: output_path
-        value: /oomol-driver/desktop/测试-html-file.pdf
-      - handle: html_file
-        value: /oomol-driver/desktop/test.html
-      - handle: html_string
+      - handle: pdf_path
+        value: /oomol-driver/desktop/015_04.pdf
+      - handle: output_format
+        value: plain_text
+      - handle: output_file
         value: null
-      - handle: url
+      - handle: page_range
         value: null
-      - handle: page_size
+      - handle: preserve_formatting
         value: null
-      - handle: orientation
-        value: null
-      - handle: margin_top
-        value: null
-      - handle: margin_bottom
-        value: null
-      - handle: margin_left
-        value: null
-      - handle: margin_right
-        value: null
-    task: self::html_to_pdf
-  - node_id: html_to_pdf#2
-    title: "HTML 转 PDF #2 (URL)"
+    task: self::pdf_extract_text
+  - node_id: pdf2meta#1
+    title: "PDF 转为元数据 #1"
     inputs_from:
-      - handle: input_source
-        value: url
+      - handle: pdf
+        value: /oomol-driver/desktop/015_04.pdf
+    task: self::pdf2meta
+  - node_id: pdf_rotate#1
+    title: "PDF 旋转 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/2512.13084v1.pdf
       - handle: output_path
-        value: /oomol-driver/desktop/测试-url.pdf
-      - handle: html_file
+        value:
+      - handle: rotation_angle
+        value: "90"
+      - handle: page_range
         value: null
-      - handle: html_string
+    task: self::pdf_rotate
+  - node_id: pdf_watermark#1
+    title: "PDF 水印 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/2512.13084v1.pdf
+      - handle: watermark_text
+        value: " 伍双"
+      - handle: watermark_image
         value: null
-      - handle: url
-        value: https://example.com
-      - handle: page_size
+      - handle: output_path
         value: null
-      - handle: orientation
+      - handle: position_x
         value: null
-      - handle: margin_top
+      - handle: position_y
         value: null
-      - handle: margin_bottom
+      - handle: layer
         value: null
-      - handle: margin_left
+      - handle: opacity
         value: null
-      - handle: margin_right
+      - handle: font_size
         value: null
-    task: self::html_to_pdf
+      - handle: rotation
+        value: null
+      - handle: color
+        value: null
+    task: self::pdf_watermark

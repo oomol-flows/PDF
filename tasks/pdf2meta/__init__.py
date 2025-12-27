@@ -1,6 +1,6 @@
 import os
 import typing
-import PyPDF2
+import pypdf
 
 
 class Inputs(typing.TypedDict):
@@ -12,7 +12,7 @@ class Outputs(typing.TypedDict):
 
 def main(params: Inputs) -> Outputs:
   pdf_path = params["pdf"]
-  pdf_reader = PyPDF2.PdfReader(pdf_path)
+  pdf_reader = pypdf.PdfReader(pdf_path)
   metadata = pdf_reader.metadata
   metadata_dict: dict[str, str] = {}
   if metadata is not None:

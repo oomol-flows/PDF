@@ -2,7 +2,7 @@
 import typing
 class Inputs(typing.TypedDict):
     pdf_path: str
-    output_path: str
+    output_path: str | None
     rotation_angle: typing.Literal["90", "180", "270"]
     page_range: str | None
 class Outputs(typing.TypedDict):
@@ -11,7 +11,8 @@ class Outputs(typing.TypedDict):
 #endregion
 
 from oocana import Context
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
+import os
 
 def string_to_number(value: str) -> float:
     """
@@ -58,6 +59,14 @@ def main(params: Inputs, context: Context) -> dict:
         # Apply default values for nullable parameters
         page_range = params.get("page_range") or "all"
 
+        # Set default output path if not provided
+        if not params.get("output_path"):
+            input_filename = os.path.basename(params["pdf_path"])
+            name, ext = os.path.splitext(input_filename)
+            output_path = os.path.join(context.session_dir, f"{name}_rotated{ext}")
+        else:
+            output_path = params["output_path"]
+
         # Read input PDF
         reader = PdfReader(params["pdf_path"])
         writer = PdfWriter()
@@ -87,11 +96,11 @@ def main(params: Inputs, context: Context) -> dict:
             writer.add_page(page)
         
         # Write rotated PDF
-        with open(params["output_path"], 'wb') as output_file:
+        with open(output_path, 'wb') as output_file:
             writer.write(output_file)
-        
+
         return {
-            "output_path": params["output_path"],
+            "output_path": output_path,
             "pages_rotated": pages_rotated
         }
         

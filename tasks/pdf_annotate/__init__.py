@@ -14,7 +14,7 @@ class Outputs(typing.TypedDict):
 #endregion
 
 from oocana import Context
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
 from reportlab.lib.colors import HexColor
 import io

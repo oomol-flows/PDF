@@ -1,21 +1,19 @@
 [project]
 name = "pdf"
 version = "0.1.0"
-description = ""
+description = "A comprehensive PDF processing toolkit for OOMOL platform"
 authors = [
     {name = "TaoZeyu",email = "i@taozeyu.com"}
 ]
 readme = "README.md"
+license = {text = "MIT"}
 requires-python = ">=3.10,<4"
 dependencies = [
     "pillow (==10.4.0)",
-    "pypdf2 (==3.0.1)",
     "pdf2image (==1.17.0)",
     "reportlab (==4.2.5)",
     "pdfplumber (==0.11.4)",
-    "pytesseract (==0.3.13)",
-    "weasyprint (==62.3)",
-    "requests (>=2.32.5,<3.0.0)"
+    "pypdf (>=6.5.0,<7.0.0)"
 ]
 
 

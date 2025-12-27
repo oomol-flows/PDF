@@ -10,7 +10,7 @@ class Outputs(typing.TypedDict):
 #endregion
 
 from oocana import Context
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 
 def main(params: Inputs, context: Context) -> dict:
     """

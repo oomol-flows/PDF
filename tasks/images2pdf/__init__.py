@@ -2,7 +2,7 @@ import os
 from oocana import Context
 from typing import Any
 from tempfile import TemporaryDirectory
-from PyPDF2 import PdfMerger
+from pypdf import PdfMerger
 from PIL import Image, UnidentifiedImageError
 
 

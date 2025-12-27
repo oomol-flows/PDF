@@ -50,6 +50,7 @@ outputs_def:
       type: array
       items:
         type: string
+        ui:widget: file
   - handle: files_created
     description: Number of files created
     json_schema:

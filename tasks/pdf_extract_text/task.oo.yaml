@@ -4,20 +4,17 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: file
-  - handle: output_format
-    description: "%output-format-for-extracted-text%"
-    json_schema:
-      type: string
-      enum:
-        - "plain_text"
-        - "json"
-        - "csv"
-    value: plain_text
   - handle: output_file
-    description: "%output-file-for-extracted-text%"
+    description: "%output-markdown-file-path%"
     json_schema:
       type: string
       ui:widget: save
+      ui:options:
+        filters:
+          - name: Markdown
+            extensions:
+              - md
+        excludeAll: true
     value:
     nullable: true
   - group: "Extraction Options"
@@ -38,15 +35,11 @@ inputs_def:
     nullable: true
 
 outputs_def:
-  - handle: extracted_text
-    description: Extracted text content
+  - handle: markdown_file
+    description: Path to the generated markdown file
     json_schema:
       type: string
-  - handle: output_file
-    description: Output file path (if specified)
-    json_schema:
-      type: string
-    nullable: true
+      ui:widget: file
   - handle: pages_processed
     description: Number of pages processed
     json_schema:

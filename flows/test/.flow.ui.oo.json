@@ -8,6 +8,56 @@
           "y": 248
         }
       }
+    },
+    "pdf_extract_text#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 443.3561550405014,
+          "y": 802.6016462559071
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Extraction Options": true
+          }
+        }
+      }
+    },
+    "pdf2meta#1": {
+      "rfNode": {
+        "position": {
+          "x": 512.6881141558753,
+          "y": 1203.0423073147954
+        }
+      }
+    },
+    "pdf_rotate#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 728.4595383186743,
+          "y": 1549.0541406569416
+        }
+      }
+    },
+    "pdf_watermark#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 629.3213164060369,
+          "y": 2039.5615523423437
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Position & Layer": true,
+            "Styling Options": true
+          }
+        }
+      }
     }
   }
 }
