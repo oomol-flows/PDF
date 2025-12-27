@@ -1,38 +1,5 @@
 {
   "nodes": {
-    "pdf2images#1": {
-      "contentWidth": 450,
-      "rfNode": {
-        "position": {
-          "x": 198,
-          "y": 248
-        }
-      }
-    },
-    "pdf_extract_text#1": {
-      "contentWidth": 450,
-      "rfNode": {
-        "position": {
-          "x": 443.3561550405014,
-          "y": 802.6016462559071
-        }
-      },
-      "sections": {
-        "inputs": {
-          "groupCollapsed": {
-            "Extraction Options": true
-          }
-        }
-      }
-    },
-    "pdf2meta#1": {
-      "rfNode": {
-        "position": {
-          "x": 512.6881141558753,
-          "y": 1203.0423073147954
-        }
-      }
-    },
     "pdf_rotate#1": {
       "contentWidth": 450,
       "rfNode": {
@@ -54,6 +21,22 @@
         "inputs": {
           "groupCollapsed": {
             "Position & Layer": true
+          }
+        }
+      }
+    },
+    "images2pdf#1": {
+      "contentWidth": 419.64686341410464,
+      "rfNode": {
+        "position": {
+          "x": 334.5,
+          "y": 508
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Document Metadata": true
           }
         }
       }
