@@ -2,7 +2,7 @@ import os
 from oocana import Context
 from typing import Any
 from tempfile import TemporaryDirectory
-from pypdf import PdfMerger
+from pypdf import PdfWriter
 from PIL import Image, UnidentifiedImageError
 
 
@@ -29,26 +29,29 @@ def main(params: dict, context: Context):
 
     valid_images = []
     with TemporaryDirectory() as temp_dir:
-        with PdfMerger() as merger:
-            for i, image_path in enumerate(image_paths):
-                try:
-                    with Image.open(image_path) as img:
-                        img.verify()
-                    valid_images.append(image_path)
-                except (UnidentifiedImageError, IOError):
-                    print(f"Skipping non-image file: {image_path}")
-                    continue
+        writer = PdfWriter()
 
-            for i, image_path in enumerate(valid_images):
-                image = Image.open(image_path).convert("RGB")
-                page_path = os.path.join(temp_dir, f"{i}.pdf")
-                image.save(page_path, "PDF", resolution=100.0)
-                merger.append(page_path)
-                context.report_progress((i + 1) / len(valid_images) * 90.0)
+        for i, image_path in enumerate(image_paths):
+            try:
+                with Image.open(image_path) as img:
+                    img.verify()
+                valid_images.append(image_path)
+            except (UnidentifiedImageError, IOError):
+                print(f"Skipping non-image file: {image_path}")
+                continue
 
-            if metadata:
-                merger.add_metadata(metadata)
-            merger.write(pdf_file_path)
+        for i, image_path in enumerate(valid_images):
+            image = Image.open(image_path).convert("RGB")
+            page_path = os.path.join(temp_dir, f"{i}.pdf")
+            image.save(page_path, "PDF", resolution=100.0)
+            writer.append(page_path)
+            context.report_progress((i + 1) / len(valid_images) * 90.0)
+
+        if metadata:
+            writer.add_metadata(metadata)
+
+        with open(pdf_file_path, "wb") as output_file:
+            writer.write(output_file)
 
         context.report_progress(100.0)
 

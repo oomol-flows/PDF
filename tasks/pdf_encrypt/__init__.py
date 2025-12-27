@@ -45,8 +45,8 @@ def main(params: Inputs, context: Context) -> dict:
 
         # Apply encryption with passwords and permissions
         writer.encrypt(
-            user_pwd=params["user_password"],
-            owner_pwd=params.get("owner_password") or params["user_password"],
+            user_password=params["user_password"],
+            owner_password=params.get("owner_password") or params["user_password"],
             use_128bit=use_128bit,
             permissions_flag=(
                 (4 if allow_printing else 0) |
