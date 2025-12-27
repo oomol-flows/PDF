@@ -28,7 +28,10 @@
       "Bash(poetry show:*)",
       "Bash(poetry search:*)",
       "Bash(poetry remove:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(fc-list:*)",
+      "Bash(apt-cache show:*)",
+      "Bash(dpkg -L:*)"
     ],
     "deny": [],
     "ask": []

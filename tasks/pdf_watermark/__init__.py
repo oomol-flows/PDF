@@ -21,6 +21,8 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.colors import HexColor
 from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from pypdf import PdfReader, PdfWriter
 from PIL import Image
 import io
@@ -42,7 +44,7 @@ def main(params: Inputs, context: Context) -> dict:
         position_x = params.get("position_x") if params.get("position_x") is not None else 0.5
         position_y = params.get("position_y") if params.get("position_y") is not None else 0.5
         layer = params.get("layer") or "background"
-        opacity = params.get("opacity") if params.get("opacity") is not None else 0.15
+        opacity = params.get("opacity") if params.get("opacity") is not None else 0.05
         font_size = params.get("font_size") if params.get("font_size") is not None else 36
         rotation = params.get("rotation") if params.get("rotation") is not None else 45
         color = params.get("color") or "#B8B8B8"
@@ -69,7 +71,35 @@ def main(params: Inputs, context: Context) -> dict:
                 can.setFillAlpha(opacity)
                 can.setStrokeAlpha(opacity)
                 can.setFillColor(HexColor(color))
-                can.setFont("Helvetica", font_size)
+
+                # Register and use font that supports Unicode/CJK
+                try:
+                    # Try to register fonts that support Chinese, Japanese, Korean
+                    # Format: (path, subfontIndex) - subfontIndex is for TTC files
+                    font_configs = [
+                        ('/usr/share/fonts/truetype/wqy/wqy-microhei.ttc', 0),  # WenQuanYi Micro Hei (Linux)
+                        ('/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc', 0),    # WenQuanYi Zen Hei (Linux)
+                        ('/System/Library/Fonts/PingFang.ttc', 0),               # macOS
+                        ('C:\\Windows\\Fonts\\msyh.ttc', 0),                     # Windows - Microsoft YaHei
+                        ('C:\\Windows\\Fonts\\simsun.ttc', 0),                   # Windows - SimSun
+                    ]
+
+                    font_registered = False
+                    for font_path, subfont_idx in font_configs:
+                        if os.path.exists(font_path):
+                            try:
+                                pdfmetrics.registerFont(TTFont('CJKFont', font_path, subfontIndex=subfont_idx))
+                                can.setFont("CJKFont", font_size)
+                                font_registered = True
+                                break
+                            except:
+                                continue
+
+                    if not font_registered:
+                        # Fallback to Helvetica if no CJK font found
+                        can.setFont("Helvetica", font_size)
+                except:
+                    can.setFont("Helvetica", font_size)
 
                 # Rotate and draw text
                 can.translate(x_pos, y_pos)

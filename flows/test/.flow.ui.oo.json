@@ -53,8 +53,7 @@
       "sections": {
         "inputs": {
           "groupCollapsed": {
-            "Position & Layer": true,
-            "Styling Options": true
+            "Position & Layer": true
           }
         }
       }
