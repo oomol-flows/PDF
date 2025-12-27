@@ -33,7 +33,9 @@ inputs_def:
     description: "%pages-to-rotate-e-g-1-3-5-7-9-or-all%"
     json_schema:
       type: string
-    value: all
+      default: all
+    value: null
+    nullable: true
 
 outputs_def:
   - handle: output_path

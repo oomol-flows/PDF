@@ -4,7 +4,7 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     output_path: str
     rotation_angle: typing.Literal["90", "180", "270"]
-    page_range: str
+    page_range: str | None
 class Outputs(typing.TypedDict):
     output_path: typing.NotRequired[str]
     pages_rotated: typing.NotRequired[float]
@@ -46,28 +46,31 @@ def string_to_number(value: str) -> float:
 def main(params: Inputs, context: Context) -> dict:
     """
     Rotate PDF pages by specified angle
-    
+
     Args:
         params: Input parameters containing PDF path and rotation settings
         context: OOMOL context object
-        
+
     Returns:
         Dictionary with output file path and rotation statistics
     """
     try:
+        # Apply default values for nullable parameters
+        page_range = params.get("page_range") or "all"
+
         # Read input PDF
         reader = PdfReader(params["pdf_path"])
         writer = PdfWriter()
         total_pages = len(reader.pages)
-        
+
         if total_pages == 0:
             raise ValueError("PDF has no pages")
-        
+
         # Parse page range
-        if params["page_range"].strip().lower() == "all":
+        if page_range.strip().lower() == "all":
             pages_to_rotate = set(range(total_pages))
         else:
-            pages_to_rotate = parse_page_range(params["page_range"], total_pages)
+            pages_to_rotate = parse_page_range(page_range, total_pages)
         
         pages_rotated = 0
         

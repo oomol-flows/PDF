@@ -4,8 +4,8 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     output_format: typing.Literal["plain_text", "json", "csv"]
     output_file: str | None
-    page_range: str
-    preserve_formatting: bool
+    page_range: str | None
+    preserve_formatting: bool | None
 class Outputs(typing.TypedDict):
     extracted_text: typing.NotRequired[str]
     output_file: typing.NotRequired[str | None]
@@ -21,33 +21,37 @@ import io
 def main(params: Inputs, context: Context) -> dict:
     """
     Extract text from PDF file
-    
+
     Args:
         params: Input parameters containing PDF path and extraction settings
         context: OOMOL context object
-        
+
     Returns:
         Dictionary with extracted text and processing statistics
     """
     try:
+        # Apply default values for nullable parameters
+        page_range = params.get("page_range") or "all"
+        preserve_formatting = params.get("preserve_formatting") if params.get("preserve_formatting") is not None else True
+
         extracted_data = []
         pages_processed = 0
-        
+
         with pdfplumber.open(params["pdf_path"]) as pdf:
             total_pages = len(pdf.pages)
-            
+
             # Parse page range
-            if params["page_range"].strip().lower() == "all":
+            if page_range.strip().lower() == "all":
                 page_indices = range(total_pages)
             else:
-                page_indices = parse_page_range(params["page_range"], total_pages)
-            
+                page_indices = parse_page_range(page_range, total_pages)
+
             # Extract text from specified pages
             for page_index in page_indices:
                 if 0 <= page_index < total_pages:
                     page = pdf.pages[page_index]
-                    
-                    if params["preserve_formatting"]:
+
+                    if preserve_formatting:
                         # Extract with layout preservation
                         text = page.extract_text(layout=True)
                     else:

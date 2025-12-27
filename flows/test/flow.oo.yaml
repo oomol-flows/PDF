@@ -1,0 +1,61 @@
+nodes:
+  - node_id: pdf2images#1
+    title: "PDF 转图片 #1"
+    inputs_from:
+      - handle: pdf_path
+        value: /oomol-driver/desktop/015_04.pdf
+      - handle: image_dir
+        value: null
+    task: self::pdf2images
+  - node_id: html_to_pdf#1
+    title: "HTML 转 PDF #1"
+    inputs_from:
+      - handle: input_source
+        value: html_file
+      - handle: output_path
+        value: /oomol-driver/desktop/测试-html-file.pdf
+      - handle: html_file
+        value: /oomol-driver/desktop/test.html
+      - handle: html_string
+        value: null
+      - handle: url
+        value: null
+      - handle: page_size
+        value: null
+      - handle: orientation
+        value: null
+      - handle: margin_top
+        value: null
+      - handle: margin_bottom
+        value: null
+      - handle: margin_left
+        value: null
+      - handle: margin_right
+        value: null
+    task: self::html_to_pdf
+  - node_id: html_to_pdf#2
+    title: "HTML 转 PDF #2 (URL)"
+    inputs_from:
+      - handle: input_source
+        value: url
+      - handle: output_path
+        value: /oomol-driver/desktop/测试-url.pdf
+      - handle: html_file
+        value: null
+      - handle: html_string
+        value: null
+      - handle: url
+        value: https://example.com
+      - handle: page_size
+        value: null
+      - handle: orientation
+        value: null
+      - handle: margin_top
+        value: null
+      - handle: margin_bottom
+        value: null
+      - handle: margin_left
+        value: null
+      - handle: margin_right
+        value: null
+    task: self::html_to_pdf

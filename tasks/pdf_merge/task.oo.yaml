@@ -25,12 +25,16 @@ inputs_def:
     description: "%preserve-bookmarks-from-input-files%"
     json_schema:
       type: boolean
-    value: true
+      default: true
+    value: null
+    nullable: true
   - handle: add_page_numbers
     description: "%add-page-numbers-to-merged-pdf%"
     json_schema:
       type: boolean
-    value: false
+      default: false
+    value: null
+    nullable: true
 
 outputs_def:
   - handle: output_path

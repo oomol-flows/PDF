@@ -1,0 +1,13 @@
+{
+  "nodes": {
+    "pdf2images#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 198,
+          "y": 248
+        }
+      }
+    }
+  }
+}

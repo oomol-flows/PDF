@@ -25,7 +25,7 @@ inputs_def:
     description: "%page-ranges-e-g-1-3-5-7-10-only-for-page_ranges-mode%"
     json_schema:
       type: string
-    value: null
+    value:
     nullable: true
   - handle: pages_per_part
     description: "%pages-per-part-only-for-equal_parts-mode%"
@@ -33,14 +33,14 @@ inputs_def:
       type: number
       minimum: 1
       default: 10
-    value: null
+    value:
     nullable: true
   - handle: filename_prefix
     description: "%prefix-for-output-filenames%"
     json_schema:
       type: string
       default: page
-    value: null
+    value:
     nullable: true
 
 outputs_def:

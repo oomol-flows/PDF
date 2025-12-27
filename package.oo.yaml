@@ -19,7 +19,6 @@ ui:
     - images2pdf
     - pdf_watermark
     - pdf_merge
-    - html_to_pdf
     - pdf_annotate
     - pdf_decrypt
     - pdf_delete_pages

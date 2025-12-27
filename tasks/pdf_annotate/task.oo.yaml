@@ -39,7 +39,7 @@ inputs_def:
       type: number
       minimum: 1
       default: 1
-    value: null
+    value:
     nullable: true
   - group: "Position & Style"
     collapsed: true
@@ -50,7 +50,7 @@ inputs_def:
       minimum: 0
       maximum: 1
       default: 0.1
-    value: null
+    value:
     nullable: true
   - handle: y_position
     description: "%y-position-0-1-0-bottom-1-top%"
@@ -59,7 +59,7 @@ inputs_def:
       minimum: 0
       maximum: 1
       default: 0.9
-    value: null
+    value:
     nullable: true
   - handle: color
     description: "%annotation-color%"
@@ -69,7 +69,7 @@ inputs_def:
       ui:options:
         colorType: HEX
       default: "#7D7FE9"
-    value: null
+    value:
     nullable: true
 
 outputs_def:
