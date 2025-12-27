@@ -18,9 +18,12 @@
       "Bash(apt-get update:*)",
       "Bash(apt-get install:*)",
       "Bash(touch:*)",
-      "mcp__oomol__refreshEditors",
-      "mcp__oomol__getTaskResult",
-      "Read(//oomol-driver/oomol-storage/**)"
+      "Read(//oomol-driver/oomol-storage/**)",
+      "Bash(mcp__oomol__refreshEditors)",
+      "Bash(rm:*)",
+      "Bash(npx -y @oomol/oocana-cli refresh-editors:*)",
+      "Bash(git log:*)",
+      "Bash(env)"
     ],
     "deny": [],
     "ask": []

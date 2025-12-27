@@ -3,13 +3,6 @@
   "display-name": "PDF",
   "test-advanced-pdf-tasks": "Test Advanced PDF Tasks",
   "pdf-merge-2": "PDF Merge #2",
-  "test-all-pdf-tasks": "Test All PDF Tasks",
-  "test-basic-pdf-tasks": "Test Basic PDF Tasks",
-  "test-final-pdf-tasks": "Test Final PDF Tasks",
-  "pdf-rotate-1": "PDF Rotate #1",
-  "test-images-to-pdf": "Test Images to PDF",
-  "test-pdf2meta": "Test PDF2Meta",
-  "test-pdf-compression-flow": "Test PDF Compression Flow",
   "html-to-pdf": "HTML to PDF",
   "convert-html-content-or-web-pages-to-pdf-format": "Convert HTML content or web pages to PDF format",
   "input-source-type": "Input source type",
@@ -117,6 +110,5 @@
   "watermark-opacity-0-1-0-transparent-1-opaque": "Watermark opacity (0-1, 0=transparent, 1=opaque)",
   "font-size-for-text-watermark": "Font size for text watermark",
   "watermark-rotation-angle-degrees": "Watermark rotation angle (degrees)",
-  "text-watermark-color": "Text watermark color",
-  "test-pdf-watermark-background": "Test PDF Watermark Background"
+  "text-watermark-color": "Text watermark color"
 }

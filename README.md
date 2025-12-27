@@ -77,15 +77,6 @@ Fine-tune document structure with advanced page manipulation tools.
 - **Batch Operations**: Process multiple documents with consistent rules
 - **Structure Preservation**: Maintain document integrity during modifications
 
-### 🤖 **Advanced AI-Powered Features**
-
-#### **PDF OCR** (`pdf_ocr`)
-Transform scanned documents into searchable, editable text with advanced OCR technology.
-- **Multi-Language Support**: Process documents in English, Chinese, Japanese, Korean, and European languages
-- **Quality Control**: Adjustable DPI settings (150-600) for optimal recognition
-- **Confidence Scoring**: Accuracy metrics for quality assurance
-- **Searchable Output**: Generate fully searchable PDFs with invisible text layers
-
 ### 📝 **Interactive Documents**
 
 #### **PDF Form Filling** (`pdf_fill_forms`)

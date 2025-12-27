@@ -5,8 +5,8 @@ class Inputs(typing.TypedDict):
     output_dir: str
     split_mode: typing.Literal["single_pages", "page_ranges", "bookmarks", "equal_parts"]
     page_ranges: str | None
-    pages_per_part: float
-    filename_prefix: str
+    pages_per_part: float | None
+    filename_prefix: str | None
 class Outputs(typing.TypedDict):
     output_files: typing.NotRequired[list[str]]
     files_created: typing.NotRequired[float]
@@ -32,94 +32,97 @@ def main(params: Inputs, context: Context) -> dict:
         # Read input PDF
         reader = PdfReader(params["pdf_path"])
         total_pages = len(reader.pages)
-        
+
         if total_pages == 0:
             raise ValueError("PDF has no pages")
-        
+
         # Create output directory if it doesn't exist
         os.makedirs(params["output_dir"], exist_ok=True)
-        
+
+        # Apply default values for nullable fields
+        pages_per_part = int(params.get("pages_per_part") or 10)
+        filename_prefix = params.get("filename_prefix") or "page"
+
         output_files = []
-        
+
         if params["split_mode"] == "single_pages":
             # Split into individual pages
             for page_num in range(total_pages):
                 writer = PdfWriter()
                 writer.add_page(reader.pages[page_num])
-                
-                filename = f"{params['filename_prefix']}_{page_num + 1:03d}.pdf"
+
+                filename = f"{filename_prefix}_{page_num + 1:03d}.pdf"
                 output_path = os.path.join(params["output_dir"], filename)
-                
+
                 with open(output_path, 'wb') as output_file:
                     writer.write(output_file)
-                
+
                 output_files.append(output_path)
-        
+
         elif params["split_mode"] == "page_ranges":
             # Split by specified page ranges
             if not params["page_ranges"]:
                 raise ValueError("Page ranges must be specified for page_ranges mode")
-            
+
             ranges = parse_page_ranges(params["page_ranges"], total_pages)
-            
+
             for range_index, (start, end) in enumerate(ranges):
                 writer = PdfWriter()
-                
+
                 for page_num in range(start - 1, end):
                     if 0 <= page_num < total_pages:
                         writer.add_page(reader.pages[page_num])
-                
-                filename = f"{params['filename_prefix']}_range_{range_index + 1}_{start}-{end}.pdf"
+
+                filename = f"{filename_prefix}_range_{range_index + 1}_{start}-{end}.pdf"
                 output_path = os.path.join(params["output_dir"], filename)
-                
+
                 with open(output_path, 'wb') as output_file:
                     writer.write(output_file)
-                
+
                 output_files.append(output_path)
-        
+
         elif params["split_mode"] == "bookmarks":
             # Split by bookmarks
             if not reader.outline:
                 raise ValueError("PDF has no bookmarks to split by")
-            
+
             bookmark_pages = extract_bookmark_pages(reader.outline)
             bookmark_pages.append(total_pages)  # Add final page
-            
+
             for i in range(len(bookmark_pages) - 1):
                 start_page = bookmark_pages[i]
                 end_page = bookmark_pages[i + 1]
-                
+
                 writer = PdfWriter()
                 for page_num in range(start_page, end_page):
                     if 0 <= page_num < total_pages:
                         writer.add_page(reader.pages[page_num])
-                
-                filename = f"{params['filename_prefix']}_bookmark_{i + 1}.pdf"
+
+                filename = f"{filename_prefix}_bookmark_{i + 1}.pdf"
                 output_path = os.path.join(params["output_dir"], filename)
-                
+
                 with open(output_path, 'wb') as output_file:
                     writer.write(output_file)
-                
+
                 output_files.append(output_path)
-        
+
         elif params["split_mode"] == "equal_parts":
             # Split into equal parts
-            pages_per_part = params["pages_per_part"]
             part_num = 1
-            
+
             for start_page in range(0, total_pages, pages_per_part):
                 writer = PdfWriter()
                 end_page = min(start_page + pages_per_part, total_pages)
-                
+
                 for page_num in range(start_page, end_page):
                     writer.add_page(reader.pages[page_num])
-                
-                filename = f"{params['filename_prefix']}_part_{part_num:02d}.pdf"
+
+                filename = f"{filename_prefix}_part_{part_num:02d}.pdf"
                 output_path = os.path.join(params["output_dir"], filename)
-                
+
                 with open(output_path, 'wb') as output_file:
                     writer.write(output_file)
-                
+
                 output_files.append(output_path)
                 part_num += 1
         

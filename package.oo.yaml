@@ -8,8 +8,23 @@ scripts:
 dependencies:
   {}
 name: pdf
-version: 0.1.4
+version: 0.1.5
 displayName: "%display-name%"
 description: "%key%"
 repository: https://github.com/oomol-flows/PDF
 releaseNotes: fix bug
+ui:
+  blocks:
+    - pdf2images
+    - images2pdf
+    - pdf_watermark
+    - pdf_merge
+    - html_to_pdf
+    - pdf_annotate
+    - pdf_decrypt
+    - pdf_delete_pages
+    - pdf_encrypt
+    - pdf_extract_text
+    - pdf_rotate
+    - pdf_split
+    - pdf2meta

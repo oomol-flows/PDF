@@ -1,13 +1,6 @@
 {
   "key": "此工具包将您的 OOMOL 工作区转变为一个完整的 PDF 处理强大平台。凭借 15 个以上的专业模块，您可以处理从合并、拆分等基本操作到 OCR、表单填写和安全管理等高级功能的一切需求。",
   "display-name": "PDF",
-  "test-all-pdf-tasks": "测试所有 PDF 任务",
-  "test-basic-pdf-tasks": "测试基本 PDF 任务",
-  "test-final-pdf-tasks": "测试最终PDF任务",
-  "pdf-rotate-1": "PDF旋转 #1",
-  "test-images-to-pdf": "测试图像转为PDF",
-  "test-pdf2meta": "测试 PDF2Meta",
-  "test-pdf-compression-flow": "测试PDF压缩流程",
   "html-to-pdf": "HTML 转 PDF",
   "convert-html-content-or-web-pages-to-pdf-format": "将HTML内容或网页转换为PDF格式",
   "input-source-type": "输入源类型",

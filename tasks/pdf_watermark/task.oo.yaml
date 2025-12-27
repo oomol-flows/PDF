@@ -15,6 +15,7 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: file
+    value:
     nullable: true
   - handle: output_path
     description: "%output-pdf-file-path2%"
@@ -27,6 +28,8 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
+    value:
+    nullable: true
   - group: "Position & Layer"
     collapsed: true
   - handle: position_x

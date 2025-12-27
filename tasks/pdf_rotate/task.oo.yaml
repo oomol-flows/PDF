@@ -4,7 +4,6 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: file
-    value: /oomol-driver/oomol-storage/pdf/page_range_1_1-100.pdf
   - handle: output_path
     description: "%output-rotated-pdf-file%"
     json_schema:
@@ -16,7 +15,6 @@ inputs_def:
           - name: PDF
             extensions:
               - pdf
-    value: /oomol-driver/oomol-storage/pdf/pdfeee.pdf
   - handle: rotation_angle
     description: "%rotation-angle-in-degrees%"
     json_schema:

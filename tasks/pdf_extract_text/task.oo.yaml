@@ -56,7 +56,9 @@ executor:
 
 title: "%pdf-text-extract%"
 icon: ":carbon:pointer-text:"
-description: "%extract-text-content-from-pdf-files%"
+description: "Extract selectable text content from PDF files. Only extracts text
+  objects (selectable/copyable text). Cannot extract text from images or scanned
+  documents - OCR functionality not included."
 
 ui:
   default_width: 450

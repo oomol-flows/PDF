@@ -4,7 +4,7 @@ class Inputs(typing.TypedDict):
     pdf_path: str
     watermark_text: str | None
     watermark_image: str | None
-    output_path: str
+    output_path: str | None
     position_x: float
     position_y: float
     layer: typing.Literal["background", "foreground"]
@@ -130,11 +130,25 @@ def main(params: Inputs, context: Context) -> dict:
             else:
                 writer.add_page(page)
         
-        # Write output PDF
-        with open(params["output_path"], 'wb') as output_file:
+        # Determine output path
+        output_path = params.get("output_path")
+        if not output_path:
+            # Generate default output path in session directory
+            base_name = os.path.splitext(os.path.basename(params["pdf_path"]))[0]
+            output_path = os.path.join(
+                context.session_dir,
+                f"{base_name}_watermarked_{context.job_id}.pdf"
+            )
+
+        # Write output PDF - ensure directory exists
+        output_dir = os.path.dirname(output_path)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+
+        with open(output_path, 'wb') as output_file:
             writer.write(output_file)
-        
-        return {"output_path": params["output_path"]}
+
+        return {"output_path": output_path}
         
     except Exception as e:
         raise Exception(f"Error adding watermark to PDF: {str(e)}")
