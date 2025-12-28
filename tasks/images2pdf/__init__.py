@@ -27,32 +27,47 @@ def main(params: dict, context: Context):
     if author is not None:
         metadata["/Author"] = author
 
+    # Validate images first without closing them
     valid_images = []
+    for image_path in image_paths:
+        try:
+            # Open and verify without closing the file
+            img = Image.open(image_path)
+            img.verify()
+            # Need to re-open after verify as it closes the file
+            img = Image.open(image_path)
+            img.close()
+            valid_images.append(image_path)
+        except (UnidentifiedImageError, IOError):
+            print(f"Skipping non-image file: {image_path}")
+            continue
+
+    if not valid_images:
+        raise ValueError("No valid images found in the input list")
+
+    # Create PDF writer and temporary directory
+    writer = PdfWriter()
+
     with TemporaryDirectory() as temp_dir:
-        writer = PdfWriter()
-
-        for i, image_path in enumerate(image_paths):
-            try:
-                with Image.open(image_path) as img:
-                    img.verify()
-                valid_images.append(image_path)
-            except (UnidentifiedImageError, IOError):
-                print(f"Skipping non-image file: {image_path}")
-                continue
-
+        # Convert each image to a temporary PDF page
         for i, image_path in enumerate(valid_images):
-            image = Image.open(image_path).convert("RGB")
-            page_path = os.path.join(temp_dir, f"{i}.pdf")
-            image.save(page_path, "PDF", resolution=100.0)
-            writer.append(page_path)
-            context.report_progress((i + 1) / len(valid_images) * 90.0)
+            with Image.open(image_path) as image:
+                rgb_image = image.convert("RGB")
+                page_path = os.path.join(temp_dir, f"page_{i}.pdf")
+                rgb_image.save(page_path, "PDF", resolution=100.0)
+                writer.append(page_path)
+                context.report_progress((i + 1) / len(valid_images) * 90.0)
 
+        # Add metadata if provided
         if metadata:
             writer.add_metadata(metadata)
 
+        # Write the final PDF file
+        os.makedirs(os.path.dirname(pdf_file_path), exist_ok=True)
         with open(pdf_file_path, "wb") as output_file:
             writer.write(output_file)
+        writer.close()
 
-        context.report_progress(100.0)
+    context.report_progress(100.0)
 
     return {"pdf_file_path": pdf_file_path}

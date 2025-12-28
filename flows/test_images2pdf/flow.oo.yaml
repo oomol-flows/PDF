@@ -1,0 +1,15 @@
+nodes:
+  - node_id: images2pdf#1
+    title: "Test Images to PDF"
+    inputs_from:
+      - handle: image_paths
+        value:
+          - /oomol-driver/desktop/pdf_images/page_1.png
+          - /oomol-driver/oomol-storage/converted_1766759506732.png
+      - handle: pdf_file_path
+        value:
+      - handle: title
+        value: "Comprehensive Test PDF"
+      - handle: author
+        value: "OOMOL Test Suite"
+    task: self::images2pdf
