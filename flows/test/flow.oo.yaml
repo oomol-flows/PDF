@@ -125,3 +125,17 @@ nodes:
       - handle: color
         value: null
     task: self::pdf_annotate
+  - node_id: images2pdf#2
+    title: "图片转 PDF #2"
+    inputs_from:
+      - handle: image_paths
+        value:
+          - /oomol-driver/oomol-storage/3ae94ed1-bbec-4a17-88cb-2131c0a9d3e1.jpg
+          - /oomol-driver/oomol-storage/3ae94ed1-bbec-4a17-88cb-2131c0a9d3e1.jpg
+      - handle: pdf_file_path
+        value: null
+      - handle: title
+        value: null
+      - handle: author
+        value: null
+    task: self::images2pdf

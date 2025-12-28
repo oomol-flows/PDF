@@ -72,6 +72,57 @@
           }
         }
       }
+    },
+    "pdf_delete_pages#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": -191.35067138612334,
+          "y": 5044.067840076438
+        }
+      }
+    },
+    "pdf_decrypt#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 490.7483273996033,
+          "y": 4717.462826631521
+        }
+      }
+    },
+    "pdf_annotate#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": -67.37899458753823,
+          "y": 5619.481612297039
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Annotation Options": true,
+            "Position & Style": true
+          }
+        }
+      }
+    },
+    "images2pdf#2": {
+      "contentWidth": 419.64686341410464,
+      "rfNode": {
+        "position": {
+          "x": 989.5917305868101,
+          "y": 5500.74359853417
+        }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "Document Metadata": true
+          }
+        }
+      }
     }
   }
 }
