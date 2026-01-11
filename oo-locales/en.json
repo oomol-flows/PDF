@@ -133,5 +133,14 @@
   "number-of-pages-rotated": "Number of pages rotated",
   "list-of-created-pdf-files": "List of created PDF files",
   "number-of-files-created": "Number of files created",
-  "watermarked-pdf-file-path": "Watermarked PDF file path"
+  "watermarked-pdf-file-path": "Watermarked PDF file path",
+  "pdf-1": "Image to PDF #1",
+  "pdf-12": "PDF Merge #1",
+  "pdf-13": "PDF encryption #1",
+  "pdf-16": "Delete page #1 from PDF",
+  "pdf-17": "PDF decryption #1",
+  "pdf-18": "PDF annotation #1",
+  "pdf-2": "Image to PDF #2",
+  "test-images-to-pdf": "Test Images to PDF",
+  "directory-containing-converted-image-files": "Directory containing converted image files"
 }

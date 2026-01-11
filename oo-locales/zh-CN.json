@@ -131,5 +131,14 @@
   "number-of-pages-rotated": "已旋转页数",
   "list-of-created-pdf-files": "已创建的 PDF 文件列表",
   "number-of-files-created": "创建的文件数",
-  "watermarked-pdf-file-path": "带有水印的 PDF 文件路径"
+  "watermarked-pdf-file-path": "带有水印的 PDF 文件路径",
+  "pdf-1": "图片转 PDF #1",
+  "pdf-12": "PDF 合并 #1",
+  "pdf-13": "PDF 加密 #1",
+  "pdf-16": "从 PDF 中删除第 1 页",
+  "pdf-17": "PDF 解密 #1",
+  "pdf-18": "PDF 注释 #1",
+  "pdf-2": "图片转 PDF #2",
+  "test-images-to-pdf": "测试图片转 PDF",
+  "total-pages-in-merged-pdf": "合并 PDF 的总页数"
 }

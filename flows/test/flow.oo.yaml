@@ -38,7 +38,7 @@ nodes:
         value: null
     task: self::pdf_watermark
   - node_id: images2pdf#1
-    title: "图片转 PDF #1"
+    title: "%pdf-1%"
     inputs_from:
       - handle: image_paths
         value:
@@ -52,7 +52,7 @@ nodes:
         value: null
     task: self::images2pdf
   - node_id: pdf_merge#1
-    title: "PDF 合并 #1"
+    title: "%pdf-12%"
     inputs_from:
       - handle: pdf_files
         value:
@@ -66,7 +66,7 @@ nodes:
         value: null
     task: self::pdf_merge
   - node_id: pdf_encrypt#1
-    title: "PDF 加密 #1"
+    title: "%pdf-13%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/《自私的美德》安·兰德.清晰扫描版.pdf
@@ -84,7 +84,7 @@ nodes:
         value: null
     task: self::pdf_encrypt
   - node_id: pdf_delete_pages#1
-    title: "PDF 删除页面 #1"
+    title: "%pdf-16%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/2512.13084v1_part1.pdf
@@ -94,7 +94,7 @@ nodes:
         value: "1"
     task: self::pdf_delete_pages
   - node_id: pdf_decrypt#1
-    title: "PDF 解密 #1"
+    title: "%pdf-17%"
     inputs_from:
       - handle: pdf_path
         from_node:
@@ -106,7 +106,7 @@ nodes:
         value: "23123"
     task: self::pdf_decrypt
   - node_id: pdf_annotate#1
-    title: "PDF 注释 #1"
+    title: "%pdf-18%"
     inputs_from:
       - handle: pdf_path
         value: /oomol-driver/desktop/《自私的美德》安·兰德.清晰扫描版.pdf
@@ -126,7 +126,7 @@ nodes:
         value: null
     task: self::pdf_annotate
   - node_id: images2pdf#2
-    title: "图片转 PDF #2"
+    title: "%pdf-2%"
     inputs_from:
       - handle: image_paths
         value:

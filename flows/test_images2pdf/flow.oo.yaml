@@ -1,6 +1,6 @@
 nodes:
   - node_id: images2pdf#1
-    title: "Test Images to PDF"
+    title: "%test-images-to-pdf%"
     inputs_from:
       - handle: image_paths
         value:
